@@ -37,37 +37,43 @@
       --r-pill:   100px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body { width: 100%; overflow-x: hidden; }
+    html { width: 100%; overflow-x: hidden; }
 
     body {
-      background: var(--bg);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-light);
       font-family: 'Figtree', sans-serif;
+      overflow-x: hidden;
     }
 
     /* ── Phone shell ── */
     .phone-shell {
       width: 100%;
-      max-width: 390px;
       min-height: 100vh;
       background: var(--bg-light);
-      border-radius: 0;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
     @media (min-width: 420px) {
-      body { align-items: center; padding: 32px 0; }
+      body {
+        background: var(--bg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 32px 0;
+      }
       .phone-shell {
+        width: 390px;
         min-height: 844px;
         border-radius: 40px;
         box-shadow: 0 40px 80px rgba(0,0,0,0.18);
+        overflow: hidden;
       }
     }
 
