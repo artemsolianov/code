@@ -34,10 +34,11 @@
 
     .phone-shell {
       width: 100%;
-      min-height: 100vh;
+      max-width: 100vw;
       background: var(--bg-light);
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
     @media (min-width: 420px) {
@@ -58,6 +59,7 @@
       }
     }
 
+
     /* ── Oval transition from image area to card ── */
     .card-oval {
       width: 100%;
@@ -74,7 +76,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      padding: 0 24px 100vh;
+      padding: 0 24px 48px;
       margin-top: -1px;
       gap: 16px;
     }
