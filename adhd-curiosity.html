@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADHD Strength – Curiosity</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #e8e4ef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .phone {
+      width: 390px;
+      min-height: 844px;
+      background: #fdf8f2;
+      border-radius: 48px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+    }
+
+    /* Back button */
+    .nav {
+      padding: 20px 20px 0;
+    }
+    .back-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-size: 16px;
+      color: #333;
+    }
+
+    /* Progress dots */
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 4px;
+      background: #ddd;
+    }
+    .dot.active {
+      width: 20px;
+      background: #ff6b35;
+    }
+
+    /* Hero illustration area */
+    .hero {
+      position: relative;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    /* Magnifier */
+    .magnifier {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      z-index: 2;
+    }
+    .magnifier-glass {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 10px solid #ff7b35;
+      background: #fff8f0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .magnifier-handle {
+      position: absolute;
+      bottom: -28px;
+      right: -4px;
+      width: 14px;
+      height: 38px;
+      background: #ff7b35;
+      border-radius: 7px;
+      transform: rotate(45deg);
+      transform-origin: top center;
+    }
+
+    /* Web inside magnifier */
+    .web-center {
+      width: 70px;
+      height: 70px;
+      position: relative;
+    }
+    .web-dot-center {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff7b35;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .web-line {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 28px;
+      height: 2px;
+      background: #ffb347;
+      transform-origin: left center;
+    }
+    .web-dot-end {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: -3px;
+    }
+
+    /* Floating icon bubbles */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .bubble-question {
+      width: 64px; height: 64px;
+      background: #7c5cbf;
+      top: 30px; left: 50px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .bubble-star {
+      width: 68px; height: 68px;
+      background: #ff9500;
+      top: 20px; right: 55px;
+    }
+    .bubble-atom {
+      width: 60px; height: 60px;
+      background: #00b894;
+      top: 110px; left: 30px;
+    }
+    .bubble-heart {
+      width: 60px; height: 60px;
+      background: #e84393;
+      top: 110px; right: 35px;
+    }
+    .bubble-rocket {
+      width: 56px; height: 56px;
+      background: #5b6cf0;
+      bottom: 30px; left: 60px;
+    }
+
+    /* Sparkle dots */
+    .sparkle {
+      position: absolute;
+      color: #ffb347;
+      font-size: 14px;
+    }
+
+    /* Content */
+    .content {
+      padding: 0 28px 24px;
+      flex: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #ff6b35;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #ff6b35;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a1a2e;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .title span {
+      color: #ff6b35;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .desc strong {
+      color: #1a1a2e;
+    }
+
+    /* CTA button */
+    .cta-wrap {
+      padding: 16px 28px 32px;
+    }
+    .cta-btn {
+      width: 100%;
+      padding: 18px;
+      border-radius: 28px;
+      border: none;
+      background: linear-gradient(135deg, #7c6ff7, #5b50e8);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      box-shadow: 0 8px 24px rgba(92, 80, 232, 0.4);
+    }
+    .cta-btn:hover { opacity: 0.92; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <!-- Nav -->
+    <div class="nav">
+      <button class="back-btn">&#8249;</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <!-- Sparkles -->
+      <span class="sparkle" style="top:40px;left:155px;">✦</span>
+      <span class="sparkle" style="top:60px;right:120px;font-size:10px;">✦</span>
+      <span class="sparkle" style="bottom:50px;right:90px;font-size:10px;">✦</span>
+
+      <!-- Floating bubbles -->
+      <div class="bubble bubble-question">?</div>
+      <div class="bubble bubble-star">⭐</div>
+      <div class="bubble bubble-atom">⚛️</div>
+      <div class="bubble bubble-heart">❤️</div>
+      <div class="bubble bubble-rocket">🚀</div>
+
+      <!-- Magnifier -->
+      <div class="magnifier">
+        <div class="magnifier-glass">
+          <!-- Simple radial web -->
+          <svg width="72" height="72" viewBox="0 0 72 72">
+            <!-- Lines from center -->
+            <line x1="36" y1="36" x2="36" y2="8"  stroke="#ffb347" stroke-width="1.5"/>
+            <line x1="36" y1="36" x2="60" y2="20" stroke="#ffb347" stroke-width="1.5"/>
+            <line x1="36" y1="36" x2="64" y2="44" stroke="#ffb347" stroke-width="1.5"/>
+            <line x1="36" y1="36" x2="46" y2="64" stroke="#ffb347" stroke-width="1.5"/>
+            <line x1="36" y1="36" x2="18" y2="60" stroke="#ffb347" stroke-width="1.5"/>
+            <line x1="36" y1="36" x2="10" y2="44" stroke="#ffb347" stroke-width="1.5"/>
+            <line x1="36" y1="36" x2="14" y2="20" stroke="#ffb347" stroke-width="1.5"/>
+            <!-- End dots -->
+            <circle cx="36" cy="8"  r="4" fill="#7c5cbf"/>
+            <circle cx="60" cy="20" r="4" fill="#ff9500"/>
+            <circle cx="64" cy="44" r="4" fill="#00b894"/>
+            <circle cx="46" cy="64" r="4" fill="#e84393"/>
+            <circle cx="18" cy="60" r="4" fill="#5b6cf0"/>
+            <circle cx="10" cy="44" r="4" fill="#ff6b35"/>
+            <circle cx="14" cy="20" r="4" fill="#ffb347"/>
+            <!-- Center dot -->
+            <circle cx="36" cy="36" r="6" fill="#ff6b35"/>
+          </svg>
+        </div>
+        <div class="magnifier-handle"></div>
+      </div>
+    </div>
+
+    <!-- Text content -->
+    <div class="content">
+      <div class="badge"><span class="badge-dot"></span> ADHD Strength</div>
+      <h1 class="title">Curiosity:<br>The Power to <span>Explore</span></h1>
+      <p class="desc">
+        Kids with ADHD have a natural curiosity that drives them to explore, ask questions,
+        and seek out new experiences, often noticing details others miss
+      </p>
+      <p class="desc">
+        This relentless curiosity fuels <strong>creativity and innovation</strong>,
+        making it a powerful strength in learning and problem-solving
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-wrap">
+      <button class="cta-btn">Great!</button>
+    </div>
+  </div>
+</body>
+</html>
