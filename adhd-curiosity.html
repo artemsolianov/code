@@ -9,48 +9,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary:       #5C65EA;
-      --primary-30:    rgba(92,101,234,0.3);
-      --primary-20:    rgba(92,101,234,0.2);
-      --primary-10:    rgba(92,101,234,0.1);
-      --primary-light: #727FFF;
-      --dark:          #262528;
-      --muted-45:      rgba(0,0,0,0.45);
-      --muted-30:      rgba(0,0,0,0.30);
-      --bg:            #E9F1F4;
-      --bg-light:      #F6F9FC;
-      --white:         #FFFFFF;
-      --stroke:        #D6D6D7;
-      --gray:          #807E80;
-      --gray-light:    #C8C6C9;
-      --lime:          #BDD066;
-      --yellow:        #FFEB69;
-      --orange:        #EE942A;
-
-      --shadow-card:    0 4px 36px rgba(184,190,211,0.25);
+      --primary:        #5C65EA;
+      --dark:           #262528;
+      --muted:          rgba(38,37,40,0.55);
+      --bg:             #E9F1F4;
+      --bg-light:       #F6F9FC;
+      --white:          #FFFFFF;
+      --stroke:         #D6D6D7;
+      --orange:         #EE942A;
       --shadow-primary: 0 4px 24px rgba(92,101,234,0.3);
-      --shadow-sheet:   0 0 100px rgba(0,0,0,0.05);
-
-      --r-card:   24px;
-      --r-btn:    16px;
-      --r-sheet:  44px;
-      --r-pill:   100px;
+      --r-btn:   16px;
+      --r-sheet: 44px;
+      --r-pill:  100px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { width: 100%; overflow-x: hidden; }
-
     body {
-      width: 100%;
-      margin: 0;
-      padding: 0;
+      width: 100%; margin: 0; padding: 0;
       background: var(--bg-light);
       font-family: 'Figtree', sans-serif;
       overflow-x: hidden;
     }
 
-    /* ── Phone shell ── */
     .phone-shell {
       width: 100%;
       min-height: 100vh;
@@ -77,106 +58,31 @@
       }
     }
 
-    .nav { display: none; }
-
-    /* ── Progress dots ── */
-    .progress-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 12px;
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: var(--r-pill);
-      background: var(--stroke);
-      transition: width 0.3s;
-    }
-    .dot.active {
-      width: 20px;
-      background: var(--orange);
-    }
-
-    /* ── Hero ── */
-    .hero {
+    /* ── Oval transition from image area to card ── */
+    .card-oval {
+      width: 100%;
+      height: 40px;
+      background: var(--white);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
       position: relative;
-      height: 280px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 8px;
+      z-index: 1;
     }
 
-    /* Magnifier */
-    .magnifier {
+    /* ── Card content ── */
+    .card-wrap {
+      background: var(--white);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 0 24px 48px;
       position: relative;
-      width: 130px;
-      height: 150px;
-      z-index: 2;
-      flex-shrink: 0;
-    }
-    .magnifier-glass {
-      width: 114px;
-      height: 114px;
-      border-radius: 50%;
-      border: 10px solid var(--orange);
-      background: #FFF8F0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 32px rgba(238,148,42,0.25);
-    }
-    .magnifier-handle {
-      position: absolute;
-      bottom: -10px;
-      right: 0px;
-      width: 14px;
-      height: 42px;
-      background: var(--orange);
-      border-radius: 7px;
-      transform: rotate(45deg);
-      transform-origin: top center;
-    }
-
-    /* Bubbles */
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    }
-    .bubble-question {
-      width: 64px; height: 64px;
-      background: #7C5CBF;
-      top: 28px; left: 44px;
-      color: var(--white);
-      font-size: 30px;
-      font-weight: 800;
-      font-family: 'Figtree', sans-serif;
-    }
-    .bubble-star    { width: 68px; height: 68px; background: #FF9500; top: 18px; right: 48px; }
-    .bubble-atom    { width: 60px; height: 60px; background: #00B894; top: 112px; left: 26px; }
-    .bubble-heart   { width: 60px; height: 60px; background: #E84393; top: 112px; right: 30px; }
-    .bubble-rocket  { width: 56px; height: 56px; background: var(--primary); bottom: 24px; left: 54px; }
-
-    .sparkle {
-      position: absolute;
-      color: var(--orange);
-      font-size: 14px;
-      opacity: 0.7;
-    }
-
-    /* ── Content ── */
-    .content {
-      padding: 4px 28px 20px;
+      margin-top: -1px;
+      z-index: 1;
+      gap: 16px;
       flex: 1;
     }
 
-    /* Badge — ds-badge style */
+    /* ── Badge ── */
     .ds-badge {
       display: inline-flex;
       align-items: center;
@@ -190,7 +96,6 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 14px;
     }
     .ds-badge-dot {
       width: 6px; height: 6px;
@@ -198,113 +103,85 @@
       background: var(--orange);
     }
 
-    /* Title — section-title scale */
-    .title {
+    /* ── Typography ── */
+    .card-title {
+      font-weight: 800;
       font-size: 28px;
-      font-weight: 700;
+      line-height: 34px;
+      letter-spacing: -0.01em;
       color: var(--dark);
-      line-height: 1.1;
-      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeIn 0.65s cubic-bezier(.2,.7,.2,1) 0.1s forwards;
     }
-    .title .highlight { color: var(--orange); }
+    .card-title .highlight { color: var(--orange); }
 
-    /* Body copy */
-    .body-text {
-      font-size: 15px;
+    .card-body {
       font-weight: 500;
-      color: var(--muted-45);
-      line-height: 1.55;
-      margin-bottom: 12px;
+      font-size: 17px;
+      line-height: 26px;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeIn 0.65s cubic-bezier(.2,.7,.2,1) 0.3s forwards;
     }
-    .body-text strong {
+
+    .card-body-2 {
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 26px;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeIn 0.65s cubic-bezier(.2,.7,.2,1) 0.5s forwards;
+    }
+
+    .card-body strong,
+    .card-body-2 strong {
       font-weight: 700;
       color: var(--dark);
     }
 
-    @keyframes slideUpFade {
-      from { opacity: 0; transform: translateY(40px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+
+    /* ── Button slot ── */
     #button {
       width: 100%;
       background: transparent;
-      padding: 0;
     }
   </style>
 </head>
 <body>
   <div class="phone-shell">
 
-    <!-- Nav -->
-    <div class="nav">
-      <button class="back-btn">&#8249;</button>
-    </div>
+    <!-- Image area (системная) -->
+    <div style="flex: 1; background: var(--bg-light);"></div>
 
-    <!-- Progress -->
-    <div class="progress-dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
+    <!-- Oval transition -->
+    <div class="card-oval"></div>
 
-    <!-- Hero -->
-    <div class="hero">
-      <span class="sparkle" style="top:44px;left:158px;">✦</span>
-      <span class="sparkle" style="top:62px;right:118px;font-size:10px;">✦</span>
-      <span class="sparkle" style="bottom:48px;right:88px;font-size:10px;">✦</span>
-
-      <div class="bubble bubble-question">?</div>
-      <div class="bubble bubble-star">⭐</div>
-      <div class="bubble bubble-atom">⚛️</div>
-      <div class="bubble bubble-heart">❤️</div>
-      <div class="bubble bubble-rocket">🚀</div>
-
-      <div class="magnifier">
-        <div class="magnifier-glass">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-            <line x1="36" y1="36" x2="36" y2="8"  stroke="#FFB347" stroke-width="1.5"/>
-            <line x1="36" y1="36" x2="60" y2="20" stroke="#FFB347" stroke-width="1.5"/>
-            <line x1="36" y1="36" x2="64" y2="44" stroke="#FFB347" stroke-width="1.5"/>
-            <line x1="36" y1="36" x2="46" y2="64" stroke="#FFB347" stroke-width="1.5"/>
-            <line x1="36" y1="36" x2="18" y2="60" stroke="#FFB347" stroke-width="1.5"/>
-            <line x1="36" y1="36" x2="10" y2="44" stroke="#FFB347" stroke-width="1.5"/>
-            <line x1="36" y1="36" x2="14" y2="20" stroke="#FFB347" stroke-width="1.5"/>
-            <circle cx="36" cy="8"  r="4" fill="#7C5CBF"/>
-            <circle cx="60" cy="20" r="4" fill="#FF9500"/>
-            <circle cx="64" cy="44" r="4" fill="#00B894"/>
-            <circle cx="46" cy="64" r="4" fill="#E84393"/>
-            <circle cx="18" cy="60" r="4" fill="#5B6CF0"/>
-            <circle cx="10" cy="44" r="4" fill="#EE942A"/>
-            <circle cx="14" cy="20" r="4" fill="#FFB347"/>
-            <circle cx="36" cy="36" r="6" fill="#EE942A"/>
-          </svg>
-        </div>
-        <div class="magnifier-handle"></div>
-      </div>
-    </div>
-
-    <!-- Text content -->
-    <div class="content">
+    <!-- Card -->
+    <div class="card-wrap">
       <div class="ds-badge">
         <span class="ds-badge-dot"></span>
         ADHD Strength
       </div>
-      <h1 class="title">
-        Curiosity:<br>
-        The Power to <span class="highlight">Explore</span>
+
+      <h1 class="card-title">
+        Curiosity:<br>The Power to <span class="highlight">Explore</span>
       </h1>
-      <p class="body-text">
+
+      <p class="card-body">
         Kids with ADHD have a natural curiosity that drives them to explore, ask questions,
         and seek out new experiences, often noticing details others miss
       </p>
-      <p class="body-text">
+
+      <p class="card-body-2">
         This relentless curiosity fuels <strong>creativity and innovation</strong>,
         making it a powerful strength in learning and problem-solving
       </p>
     </div>
 
-    <!-- CTA -->
     <div id="button"></div>
 
   </div>
