@@ -35,46 +35,50 @@
     ══════════════════════════════ */
     .iphone {
       position: relative;
-      width: 430px;
-      background: #1A1A1A;
-      border-radius: 54px;
-      padding: 14px;
+      width: 393px;
+      background: #2A2A2C;
+      border-radius: 56px;
+      padding: 12px;
       box-shadow:
-        0 0 0 1px #3A3A3C,
-        0 0 0 2px #2C2C2E,
-        inset 0 0 0 1px #3A3A3C,
-        0 40px 80px rgba(0,0,0,0.6);
+        0 0 0 1px #4A4A4C,
+        0 0 0 3px #1A1A1C,
+        0 50px 100px rgba(0,0,0,0.7),
+        0 20px 40px rgba(0,0,0,0.4);
     }
 
-    /* Volume buttons */
+    /* Volume buttons left */
     .iphone::before {
       content: '';
       position: absolute;
       left: -4px;
-      top: 120px;
+      top: 130px;
       width: 4px;
-      height: 34px;
-      background: #2C2C2E;
+      height: 32px;
+      background: #3A3A3C;
       border-radius: 2px 0 0 2px;
-      box-shadow: 0 44px 0 #2C2C2E, 0 88px 0 #2C2C2E;
+      box-shadow: 0 48px 0 #3A3A3C, 0 96px 0 #3A3A3C;
     }
-    /* Power button */
+    /* Power button right */
     .iphone::after {
       content: '';
       position: absolute;
       right: -4px;
-      top: 160px;
+      top: 180px;
       width: 4px;
-      height: 64px;
-      background: #2C2C2E;
+      height: 72px;
+      background: #3A3A3C;
       border-radius: 0 2px 2px 0;
     }
 
     .iphone-inner {
       background: #fff;
-      border-radius: 44px;
+      border-radius: 46px;
       overflow: hidden;
       position: relative;
+      /* Fixed iPhone viewport height */
+      height: 812px;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Dynamic Island */
@@ -99,6 +103,7 @@
       padding: 0 28px 6px;
       position: relative;
       z-index: 5;
+      flex-shrink: 0;
     }
     .sb-time {
       font-size: 15px;
@@ -119,6 +124,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      background: #fff;
     }
     .iphone-home-bar {
       width: 134px;
@@ -131,7 +138,14 @@
     /* ══════════════════════════════
        Screen content
     ══════════════════════════════ */
-    .screen { background: #fff; }
+    .screen {
+      background: #fff;
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    .screen::-webkit-scrollbar { display: none; }
 
     .progress-wrap { padding: 8px 20px 0; }
     .progress-track { height: 4px; background: #F0EDE9; border-radius: 99px; overflow: hidden; }
