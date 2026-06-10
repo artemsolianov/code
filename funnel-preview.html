@@ -9,696 +9,368 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #EDECEA;
+      background: #1C1C1E;
       font-family: 'Figtree', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px;
-      padding: 40px 16px;
+      gap: 48px;
+      padding: 48px 16px;
     }
 
-    /* ── Screen wrapper ── */
-    .screen {
-      width: 390px;
-      background: #fff;
-      border-radius: 32px;
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
-      position: relative;
-    }
+    /* ── Label above each phone ── */
     .screen-label {
-      width: 390px;
       font-family: 'Figtree', sans-serif;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(38,37,40,0.35);
-      margin-bottom: 6px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: -36px;
+      align-self: center;
     }
 
-    /* ── Progress bar ── */
-    .progress-wrap {
-      padding: 20px 20px 0;
-    }
-    .progress-track {
-      height: 4px;
-      background: #F0EDE9;
-      border-radius: 99px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: #EE942A;
-      border-radius: 99px;
-      transition: width 0.4s ease;
-    }
-
-    /* ── Back button ── */
-    .back-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #F5F4F2;
-      margin: 16px 20px 0;
-      cursor: pointer;
-    }
-    .back-btn svg { display: block; }
-
-    /* ── Quiz question ── */
-    .q-body { padding: 12px 20px 32px; }
-    .q-title {
-      font-size: 22px;
-      font-weight: 800;
-      line-height: 1.25;
-      color: #262528;
-      margin-bottom: 6px;
-    }
-    .q-subtitle {
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(38,37,40,0.50);
-      margin-bottom: 20px;
-      line-height: 1.4;
-    }
-
-    /* ── Option row ── */
-    .options { display: flex; flex-direction: column; gap: 10px; }
-    .option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: #F8F7F5;
-      border: 1.5px solid transparent;
-      cursor: pointer;
-    }
-    .option:hover { border-color: #EE942A; }
-    .option-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
-    .option-text {
-      font-size: 15px;
-      font-weight: 600;
-      color: #262528;
-      line-height: 1.3;
-    }
-    .option-check {
-      margin-left: auto;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 1.5px solid #D8D5D0;
-      flex-shrink: 0;
-    }
-
-    /* ── Photo grid (who are you / age / gender) ── */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 0 20px 32px;
-    }
-    .photo-card {
-      border-radius: 16px;
-      background: #F8F7F5;
-      overflow: hidden;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-    .photo-card:hover { border-color: #EE942A; }
-    .photo-placeholder {
-      width: 100%;
-      aspect-ratio: 1;
-      background: linear-gradient(135deg, #F0EDE9 0%, #E5E1DC 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 600;
-      color: rgba(38,37,40,0.35);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 8px;
-    }
-    .photo-card-label {
-      padding: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #262528;
-      text-align: center;
-    }
-
-    /* ── CTA button ── */
-    .cta-wrap { padding: 0 20px 32px; }
-    .cta-btn {
-      width: 100%;
-      height: 54px;
-      border-radius: 99px;
-      background: #EE942A;
-      border: none;
-      font-family: 'Figtree', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .cta-btn.outline {
-      background: transparent;
-      border: 2px solid #EE942A;
-      color: #EE942A;
-    }
-    .cta-btn.ghost {
-      background: #F8F7F5;
-      color: #262528;
-    }
-
-    /* ── Info screen ── */
-    .info-screen { background: #FFF8F0; }
-    .info-photo-area {
-      width: 100%;
-      height: 260px;
-      background: linear-gradient(160deg, #F5E6CC 0%, #EDD6AA 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* ══════════════════════════════
+       iPhone frame
+    ══════════════════════════════ */
+    .iphone {
       position: relative;
-      overflow: hidden;
+      width: 430px;
+      background: #1A1A1A;
+      border-radius: 54px;
+      padding: 14px;
+      box-shadow:
+        0 0 0 1px #3A3A3C,
+        0 0 0 2px #2C2C2E,
+        inset 0 0 0 1px #3A3A3C,
+        0 40px 80px rgba(0,0,0,0.6);
     }
-    .info-photo-area img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
+
+    /* Volume buttons */
+    .iphone::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 120px;
+      width: 4px;
+      height: 34px;
+      background: #2C2C2E;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 44px 0 #2C2C2E, 0 88px 0 #2C2C2E;
     }
-    .info-photo-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(38,37,40,0.35);
+    /* Power button */
+    .iphone::after {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: 160px;
+      width: 4px;
+      height: 64px;
+      background: #2C2C2E;
+      border-radius: 0 2px 2px 0;
     }
-    .info-card {
+
+    .iphone-inner {
       background: #fff;
-      border-radius: 28px 28px 0 0;
-      margin-top: -24px;
-      padding: 28px 24px 32px;
-    }
-    .info-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(238,148,42,0.10);
-      border-radius: 99px;
-      padding: 5px 10px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #EE942A;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .info-quote-mark {
-      font-size: 32px;
-      line-height: 1;
-      color: #EE942A;
-      margin-bottom: 8px;
-    }
-    .info-title {
-      font-size: 22px;
-      font-weight: 800;
-      line-height: 1.25;
-      color: #262528;
-      margin-bottom: 10px;
-    }
-    .info-title .hi { color: #EE942A; }
-    .info-body {
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.6;
-      color: rgba(38,37,40,0.60);
-      margin-bottom: 14px;
-    }
-    .info-body strong { color: #262528; font-weight: 700; }
-    .info-body .savvy { color: #EE942A; font-weight: 700; }
-    .info-author {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .info-author-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #F0EDE9, #D8D5D0);
+      border-radius: 44px;
       overflow: hidden;
-      flex-shrink: 0;
-    }
-    .info-author-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .info-author-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: #262528;
-    }
-    .info-author-role {
-      font-size: 12px;
-      color: rgba(38,37,40,0.50);
-      font-weight: 500;
-    }
-    .info-rating {
-      font-size: 13px;
-      color: rgba(38,37,40,0.50);
-      font-weight: 600;
-    }
-    .info-rating .stars { color: #EE942A; }
-
-    /* ── Checklist ── */
-    .checklist { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .check-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 15px;
-      font-weight: 500;
-      color: rgba(38,37,40,0.70);
-      line-height: 1.4;
-    }
-    .check-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #EE942A;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1px;
+      position: relative;
     }
 
-    /* ── Comparison table ── */
-    .compare-wrap { padding: 16px 20px 32px; }
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .compare-col-head {
-      font-size: 16px;
-      font-weight: 800;
-      color: #262528;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    .compare-photo {
-      width: 100%;
-      aspect-ratio: 0.85;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #F0EDE9, #D8D5D0);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: rgba(38,37,40,0.35);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .compare-item {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(38,37,40,0.65);
-      line-height: 1.4;
-      padding: 6px 0;
-      border-top: 1px solid #F0EDE9;
+    /* Dynamic Island */
+    .iphone-island {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 34px;
+      background: #1A1A1A;
+      border-radius: 20px;
+      z-index: 10;
     }
 
-    /* ── Multi-select ── */
-    .multi-option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: #F8F7F5;
-      border: 1.5px solid transparent;
-      cursor: pointer;
-    }
-    .multi-option:hover { border-color: #EE942A; }
-    .multi-checkbox {
-      width: 20px;
-      height: 20px;
-      border-radius: 6px;
-      border: 1.5px solid #D8D5D0;
-      margin-left: auto;
-      flex-shrink: 0;
-    }
-
-    /* ── Analyzing screen ── */
-    .analyze-photo {
-      width: 100%;
-      height: 240px;
-      background: linear-gradient(160deg, #F5E6CC 0%, #EDD6AA 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .analyze-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .analyze-body { padding: 28px 24px 36px; }
-    .analyze-title {
-      font-size: 22px;
-      font-weight: 800;
-      color: #262528;
-      margin-bottom: 24px;
-    }
-    .analyze-row { margin-bottom: 16px; }
-    .analyze-row-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .analyze-row-label { font-size: 14px; font-weight: 600; color: #262528; }
-    .analyze-row-pct { font-size: 13px; font-weight: 700; color: #EE942A; }
-    .analyze-track {
-      height: 8px;
-      background: #F0EDE9;
-      border-radius: 99px;
-      overflow: hidden;
-    }
-    .analyze-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #EE942A, #F5B85A);
-      border-radius: 99px;
-    }
-
-    /* ── Hero screen ── */
-    .hero-inner { padding: 32px 24px 36px; }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #F8F7F5;
-      border-radius: 99px;
-      padding: 6px 14px;
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(38,37,40,0.55);
-      margin-bottom: 20px;
-      border: 1px solid #EDECEA;
-    }
-    .hero-mockups {
+    /* Status bar spacer */
+    .iphone-statusbar {
+      height: 54px;
       display: flex;
       align-items: flex-end;
-      justify-content: center;
-      gap: -12px;
-      height: 200px;
+      justify-content: space-between;
+      padding: 0 28px 6px;
       position: relative;
-      margin-bottom: 28px;
+      z-index: 5;
     }
-    .hero-phone {
-      width: 110px;
-      height: 186px;
-      border-radius: 20px;
-      background: linear-gradient(155deg, #6C63FF 0%, #9B95FF 100%);
-      box-shadow: 0 12px 32px rgba(108,99,255,0.25);
-      flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
+    .sb-time {
+      font-size: 15px;
+      font-weight: 700;
+      color: #262528;
+      letter-spacing: -0.01em;
     }
-    .hero-phone.left {
-      transform: rotate(-12deg) translateX(20px);
-      z-index: 1;
-      background: linear-gradient(155deg, #7C74FF 0%, #A49DFF 100%);
-      height: 170px;
-    }
-    .hero-phone.center {
-      z-index: 3;
-      transform: translateY(-14px);
-    }
-    .hero-phone.right {
-      transform: rotate(12deg) translateX(-20px);
-      z-index: 2;
-      height: 170px;
-      background: linear-gradient(155deg, #FF8C42 0%, #FFB47A 100%);
-    }
-    .phone-inner {
-      padding: 10px 8px;
-      height: 100%;
+    .sb-icons {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
+      align-items: center;
+      gap: 6px;
     }
-    .phone-bar {
-      height: 3px;
+    .sb-icons svg { display: block; }
+
+    /* Home indicator */
+    .iphone-home {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .iphone-home-bar {
+      width: 134px;
+      height: 5px;
+      background: #262528;
       border-radius: 99px;
-      background: rgba(255,255,255,0.35);
+      opacity: 0.18;
     }
+
+    /* ══════════════════════════════
+       Screen content
+    ══════════════════════════════ */
+    .screen { background: #fff; }
+
+    .progress-wrap { padding: 8px 20px 0; }
+    .progress-track { height: 4px; background: #F0EDE9; border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; background: #EE942A; border-radius: 99px; }
+
+    .back-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #F5F4F2; margin: 12px 20px 0; cursor: pointer;
+    }
+
+    .q-body { padding: 10px 20px 24px; }
+    .q-title { font-size: 21px; font-weight: 800; line-height: 1.25; color: #262528; margin-bottom: 6px; }
+    .q-subtitle { font-size: 13px; font-weight: 500; color: rgba(38,37,40,0.50); margin-bottom: 16px; line-height: 1.4; }
+
+    .options { display: flex; flex-direction: column; gap: 9px; }
+    .option {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 16px; border-radius: 14px;
+      background: #F8F7F5; border: 1.5px solid transparent; cursor: pointer;
+    }
+    .option:hover { border-color: #5B6BF5; }
+    .option-icon { font-size: 20px; line-height: 1; flex-shrink: 0; }
+    .option-text { font-size: 15px; font-weight: 600; color: #262528; line-height: 1.3; }
+    .multi-option {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 16px; border-radius: 14px;
+      background: #F8F7F5; border: 1.5px solid transparent; cursor: pointer;
+    }
+    .multi-checkbox { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid #D8D5D0; margin-left: auto; flex-shrink: 0; }
+
+    .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 20px 24px; }
+    .photo-card { border-radius: 16px; background: #F8F7F5; overflow: hidden; cursor: pointer; border: 2px solid transparent; }
+    .photo-card:hover { border-color: #5B6BF5; }
+    .photo-placeholder {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, #F0EDE9 0%, #E5E1DC 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 600; color: rgba(38,37,40,0.3);
+      letter-spacing: 0.05em; text-transform: uppercase; text-align: center; padding: 8px;
+    }
+    .photo-card-label { padding: 9px; font-size: 13px; font-weight: 700; color: #262528; text-align: center; }
+
+    .cta-wrap { padding: 0 20px 12px; }
+    .cta-btn {
+      width: 100%; height: 52px; border-radius: 99px;
+      background: #5B6BF5; border: none;
+      font-family: 'Figtree', sans-serif; font-size: 16px; font-weight: 700; color: #fff;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .cta-btn.ghost { background: #EEEEF8; color: #5B6BF5; }
+
+    /* Info screens */
+    .info-screen { background: #FFF8F0; }
+    .info-photo-area {
+      width: 100%; height: 240px;
+      background: linear-gradient(160deg, #F5E6CC 0%, #EDD6AA 100%);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .info-photo-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(38,37,40,0.30); }
+    .info-card { background: #fff; border-radius: 28px 28px 0 0; margin-top: -24px; padding: 24px 24px 8px; }
+    .info-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(91,107,245,0.10); border-radius: 99px; padding: 5px 10px;
+      font-size: 11px; font-weight: 700; color: #5B6BF5;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .info-quote-mark { font-size: 30px; line-height: 1; color: #EE942A; margin-bottom: 8px; }
+    .info-title { font-size: 21px; font-weight: 800; line-height: 1.25; color: #262528; margin-bottom: 10px; }
+    .info-title .hi { color: #EE942A; }
+    .info-body { font-size: 14px; font-weight: 500; line-height: 1.6; color: rgba(38,37,40,0.60); margin-bottom: 12px; }
+    .info-body strong { color: #262528; font-weight: 700; }
+    .info-body .savvy { color: #EE942A; font-weight: 700; }
+    .info-author { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .info-author-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg,#F0EDE9,#D8D5D0); overflow: hidden; flex-shrink: 0; }
+    .info-author-name { font-size: 14px; font-weight: 700; color: #262528; }
+    .info-author-role { font-size: 12px; color: rgba(38,37,40,0.50); font-weight: 500; }
+    .info-rating { font-size: 13px; color: rgba(38,37,40,0.50); font-weight: 600; }
+    .info-rating .stars { color: #EE942A; }
+
+    .checklist { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+    .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 500; color: rgba(38,37,40,0.70); line-height: 1.4; }
+    .check-icon { width: 20px; height: 20px; border-radius: 50%; background: #5B6BF5; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+
+    .compare-wrap { padding: 12px 20px 24px; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .compare-col-head { font-size: 15px; font-weight: 800; color: #262528; margin-bottom: 8px; text-align: center; }
+    .compare-photo { width: 100%; aspect-ratio: 0.85; border-radius: 14px; background: linear-gradient(135deg,#F0EDE9,#D8D5D0); margin-bottom: 10px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: rgba(38,37,40,0.3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .compare-item { font-size: 12px; font-weight: 500; color: rgba(38,37,40,0.65); line-height: 1.4; padding: 5px 0; border-top: 1px solid #F0EDE9; }
+
+    .analyze-photo { width: 100%; height: 220px; background: linear-gradient(160deg,#F5E6CC,#EDD6AA); display: flex; align-items: center; justify-content: center; }
+    .analyze-body { padding: 24px 24px 16px; }
+    .analyze-title { font-size: 21px; font-weight: 800; color: #262528; margin-bottom: 20px; }
+    .analyze-row { margin-bottom: 14px; }
+    .analyze-row-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .analyze-row-label { font-size: 13px; font-weight: 600; color: #262528; }
+    .analyze-row-pct { font-size: 12px; font-weight: 700; color: #5B6BF5; }
+    .analyze-track { height: 8px; background: #F0EDE9; border-radius: 99px; overflow: hidden; }
+    .analyze-fill { height: 100%; background: linear-gradient(90deg,#5B6BF5,#8B97F8); border-radius: 99px; }
+
+    .hero-inner { padding: 20px 24px 24px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: #F8F7F5; border-radius: 99px; padding: 6px 14px; font-size: 11px; font-weight: 600; color: rgba(38,37,40,0.55); margin-bottom: 16px; border: 1px solid #EDECEA; }
+    .hero-mockups { display: flex; align-items: flex-end; justify-content: center; height: 180px; position: relative; margin-bottom: 20px; }
+    .hero-phone { width: 100px; height: 170px; border-radius: 18px; flex-shrink: 0; overflow: hidden; }
+    .hero-phone.left { background: linear-gradient(155deg,#7C74FF,#A49DFF); transform: rotate(-12deg) translateX(18px); z-index: 1; height: 154px; box-shadow: 0 8px 24px rgba(108,99,255,0.2); }
+    .hero-phone.center { background: linear-gradient(155deg,#6C63FF,#9B95FF); z-index: 3; transform: translateY(-12px); box-shadow: 0 12px 32px rgba(108,99,255,0.3); }
+    .hero-phone.right { background: linear-gradient(155deg,#FF8C42,#FFB47A); transform: rotate(12deg) translateX(-18px); z-index: 2; height: 154px; box-shadow: 0 8px 24px rgba(255,140,66,0.2); }
+    .phone-inner { padding: 10px 8px; height: 100%; display: flex; flex-direction: column; gap: 4px; }
+    .phone-bar { height: 3px; border-radius: 99px; background: rgba(255,255,255,0.35); }
     .phone-bar.w60 { width: 60%; }
     .phone-bar.w80 { width: 80%; }
     .phone-bar.w40 { width: 40%; }
-    .phone-title-mock {
-      font-size: 8px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.2;
-      margin-top: 4px;
-    }
-    .hero-title {
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1.2;
-      color: #262528;
-      margin-bottom: 12px;
-    }
-    .hero-body {
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.6;
-      color: rgba(38,37,40,0.55);
-      margin-bottom: 24px;
-    }
-    .hero-progress-wrap { margin-bottom: 6px; }
-    .hero-progress-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(38,37,40,0.40);
-      margin-bottom: 6px;
-    }
-    .hero-progress-label .done { color: #EE942A; }
-    .hero-progress-pct {
-      width: 100%;
-      height: 8px;
-      background: #F0EDE9;
-      border-radius: 99px;
-      overflow: hidden;
-    }
-    .hero-progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #EE942A, #F5B85A);
-      border-radius: 99px;
-    }
-    .hero-progress-caption {
-      font-size: 12px;
-      font-weight: 500;
-      color: rgba(38,37,40,0.40);
-      text-align: center;
-      margin-top: 6px;
-    }
+    .phone-title-mock { font-size: 7px; font-weight: 800; color: #fff; line-height: 1.2; margin-top: 4px; }
+    .hero-title { font-size: 24px; font-weight: 800; line-height: 1.2; color: #262528; margin-bottom: 10px; }
+    .hero-body { font-size: 14px; font-weight: 500; line-height: 1.6; color: rgba(38,37,40,0.55); margin-bottom: 20px; }
+    .hero-progress-label { font-size: 12px; font-weight: 700; color: #EE942A; margin-bottom: 6px; }
+    .hero-progress-pct { width: 100%; height: 8px; background: #F0EDE9; border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
+    .hero-progress-fill { height: 100%; background: linear-gradient(90deg,#EE942A,#F5B85A); border-radius: 99px; }
+    .hero-progress-caption { font-size: 12px; font-weight: 500; color: rgba(38,37,40,0.40); text-align: center; }
   </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════
-     SCREEN 1 — HERO
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 1 — Hero</div>
-<div class="screen">
-  <div class="hero-inner">
-    <div class="hero-badge">
-      ✦ Crafted by Education Experts ✦
+<!-- helper macro as inline block via JS -->
+<!-- Each screen is wrapped in .iphone -->
+
+<script>
+function iphone(label, html) {
+  document.write(`
+  <div class="screen-label">${label}</div>
+  <div class="iphone">
+    <div class="iphone-inner">
+      <div class="iphone-island"></div>
+      <div class="iphone-statusbar">
+        <span class="sb-time">9:41</span>
+        <div class="sb-icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="3" width="3" height="9" rx="1" fill="#262528"/><rect x="4.5" y="2" width="3" height="10" rx="1" fill="#262528"/><rect x="9" y="0" width="3" height="12" rx="1" fill="#262528"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="#262528" opacity=".3"/></svg>
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.5C10.5 2.5 12.7 3.6 14.2 5.3L15.5 4C13.6 1.9 11 .5 8 .5S2.4 1.9.5 4L1.8 5.3C3.3 3.6 5.5 2.5 8 2.5Z" fill="#262528"/><path d="M8 5.5C9.7 5.5 11.2 6.2 12.3 7.4L13.6 6.1C12.1 4.5 10.2 3.5 8 3.5S3.9 4.5 2.4 6.1L3.7 7.4C4.8 6.2 6.3 5.5 8 5.5Z" fill="#262528"/><circle cx="8" cy="10" r="2" fill="#262528"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="#262528" stroke-opacity=".35"/><rect x="2" y="2" width="16" height="8" rx="2" fill="#262528"/><path d="M23 4.5V7.5C23.8 7.2 24.5 6.5 24.5 6S23.8 4.8 23 4.5Z" fill="#262528" opacity=".4"/></svg>
+        </div>
+      </div>
+      <div class="screen">${html}</div>
+      <div class="iphone-home"><div class="iphone-home-bar"></div></div>
     </div>
+  </div>`);
+}
+</script>
+
+<script>
+iphone("Screen 1 — Hero", `
+  <div class="hero-inner">
+    <div class="hero-badge">✦ Crafted by Education Experts ✦</div>
     <div class="hero-mockups">
-      <div class="hero-phone left">
-        <div class="phone-inner">
-          <div class="phone-bar w80"></div>
-          <div class="phone-title-mock">As kid grows wi...</div>
-          <div class="phone-bar w60"></div>
-          <div class="phone-bar w40"></div>
-        </div>
-      </div>
-      <div class="hero-phone center">
-        <div class="phone-inner">
-          <div class="phone-bar w80"></div>
-          <div class="phone-title-mock">Tantrums Tamed</div>
-          <div class="phone-bar w60"></div>
-          <div class="phone-bar w80"></div>
-          <div class="phone-bar w40"></div>
-        </div>
-      </div>
-      <div class="hero-phone right">
-        <div class="phone-inner">
-          <div class="phone-bar w80"></div>
-          <div class="phone-title-mock">As kid grow wi...</div>
-          <div class="phone-bar w60"></div>
-          <div class="phone-bar w40"></div>
-        </div>
-      </div>
+      <div class="hero-phone left"><div class="phone-inner"><div class="phone-bar w80"></div><div class="phone-title-mock">As kid grows wi...</div><div class="phone-bar w60"></div><div class="phone-bar w40"></div></div></div>
+      <div class="hero-phone center"><div class="phone-inner"><div class="phone-bar w80"></div><div class="phone-title-mock">Tantrums Tamed</div><div class="phone-bar w60"></div><div class="phone-bar w80"></div><div class="phone-bar w40"></div></div></div>
+      <div class="hero-phone right"><div class="phone-inner"><div class="phone-bar w80"></div><div class="phone-title-mock">As kid grow wi...</div><div class="phone-bar w60"></div><div class="phone-bar w40"></div></div></div>
     </div>
     <h1 class="hero-title">We help turn big feelings and restless energy into a child's superpower</h1>
     <p class="hero-body">Over 6,000 families have used SAVVY KID to support kids with challenges in focus, energy, and emotions.</p>
-    <div class="hero-progress-wrap">
-      <div class="hero-progress-label">
-        <span class="done">Done!</span>
-      </div>
-      <div class="hero-progress-pct">
-        <div class="hero-progress-fill" style="width:100%"></div>
-      </div>
-      <div class="hero-progress-caption">Your child's plan is ready! 🎉</div>
-    </div>
+    <div class="hero-progress-label">Done!</div>
+    <div class="hero-progress-pct"><div class="hero-progress-fill" style="width:100%"></div></div>
+    <div class="hero-progress-caption">Your child's plan is ready! 🎉</div>
   </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Get the Plan →</button>
-  </div>
-</div>
+  <div class="cta-wrap"><button class="cta-btn">Get the Plan →</button></div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 2 — WHO ARE YOU
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 2 — Who are you to the child?</div>
-<div class="screen">
+<script>
+iphone("Screen 2 — Who are you to the child?", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:6%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="q-body">
-    <h2 class="q-title">Who are you to the child?</h2>
-  </div>
+  <div class="q-body"><h2 class="q-title">Who are you to the child?</h2></div>
   <div class="photo-grid">
-    <div class="photo-card">
-      <div class="photo-placeholder">Mom photo</div>
-      <div class="photo-card-label">Mom</div>
-    </div>
-    <div class="photo-card">
-      <div class="photo-placeholder">Dad photo</div>
-      <div class="photo-card-label">Dad</div>
-    </div>
-    <div class="photo-card">
-      <div class="photo-placeholder">Grandparents photo</div>
-      <div class="photo-card-label">Grandmother / Grandfather</div>
-    </div>
-    <div class="photo-card">
-      <div class="photo-placeholder">Couple photo</div>
-      <div class="photo-card-label">Other caregiver</div>
-    </div>
+    <div class="photo-card"><div class="photo-placeholder">Mom photo</div><div class="photo-card-label">Mom</div></div>
+    <div class="photo-card"><div class="photo-placeholder">Dad photo</div><div class="photo-card-label">Dad</div></div>
+    <div class="photo-card"><div class="photo-placeholder">Grandparents photo</div><div class="photo-card-label">Grandmother / Grandfather</div></div>
+    <div class="photo-card"><div class="photo-placeholder">Other caregiver photo</div><div class="photo-card-label">Other caregiver</div></div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 3 — AGE
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 3 — How old is your child?</div>
-<div class="screen">
+<script>
+iphone("Screen 3 — How old is your child?", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:10%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="q-body">
-    <h2 class="q-title">How old is your child?</h2>
-    <p class="q-subtitle">For this quiz think about one of your kids — you can add others later</p>
-  </div>
+  <div class="q-body"><h2 class="q-title">How old is your child?</h2><p class="q-subtitle">For this quiz think about one of your kids — you can add others later</p></div>
   <div class="photo-grid">
-    <div class="photo-card">
-      <div class="photo-placeholder">Young child photo</div>
-      <div class="photo-card-label">Under 6</div>
-    </div>
-    <div class="photo-card">
-      <div class="photo-placeholder">Child 6-8 photo</div>
-      <div class="photo-card-label">6–8</div>
-    </div>
-    <div class="photo-card">
-      <div class="photo-placeholder">Child 9-11 photo</div>
-      <div class="photo-card-label">9–11</div>
-    </div>
-    <div class="photo-card">
-      <div class="photo-placeholder">Child 12+ photo</div>
-      <div class="photo-card-label">12+</div>
-    </div>
+    <div class="photo-card"><div class="photo-placeholder">Young child photo</div><div class="photo-card-label">Under 6</div></div>
+    <div class="photo-card"><div class="photo-placeholder">Child 6–8 photo</div><div class="photo-card-label">6–8</div></div>
+    <div class="photo-card"><div class="photo-placeholder">Child 9–11 photo</div><div class="photo-card-label">9–11</div></div>
+    <div class="photo-card"><div class="photo-placeholder">Child 12+ photo</div><div class="photo-card-label">12+</div></div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 4 — GENDER
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 4 — Gender</div>
-<div class="screen">
+<script>
+iphone("Screen 4 — Gender", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:14%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="q-body">
-    <h2 class="q-title">Choose the gender of your child</h2>
+  <div class="q-body"><h2 class="q-title">Choose the gender of your child</h2></div>
+  <div class="photo-grid" style="grid-template-columns:1fr 1fr; padding-bottom:24px;">
+    <div class="photo-card"><div class="photo-placeholder">Boy photo</div><div class="photo-card-label">Boy</div></div>
+    <div class="photo-card"><div class="photo-placeholder">Girl photo</div><div class="photo-card-label">Girl</div></div>
   </div>
-  <div class="photo-grid" style="grid-template-columns:1fr 1fr; padding-bottom: 32px;">
-    <div class="photo-card">
-      <div class="photo-placeholder">Boy photo</div>
-      <div class="photo-card-label">Boy</div>
-    </div>
-    <div class="photo-card">
-      <div class="photo-placeholder">Girl photo</div>
-      <div class="photo-card-label">Girl</div>
-    </div>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 5 — INFO: ADHD IN BOYS VS GIRLS
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 5 — Info: ADHD in boys vs girls</div>
-<div class="screen" style="background:#FFF8F0;">
-  <div class="back-btn" style="margin-bottom:0;"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="compare-wrap">
-    <h2 class="q-title" style="margin-bottom:20px;">ADHD shows up differently in boys and girls</h2>
-    <div class="compare-grid">
-      <div>
-        <div class="compare-col-head">Boys</div>
-        <div class="compare-photo">Boy photo</div>
-        <div class="compare-item">Usually diagnosed earlier (ages 7–10)</div>
-        <div class="compare-item">More hyperactive and impulsive</div>
-        <div class="compare-item">More likely to act out or be disruptive</div>
-        <div class="compare-item">Struggle more in school but get diagnosed</div>
-      </div>
-      <div>
-        <div class="compare-col-head">Girls</div>
-        <div class="compare-photo">Girl photo</div>
-        <div class="compare-item">Usually diagnosed later (often in teens or adulthood)</div>
-        <div class="compare-item">More likely to be inattentive than hyperactive</div>
-        <div class="compare-item">Tend to keep struggles inside, leading to anxiety</div>
-        <div class="compare-item">School challenges often go unnoticed longer</div>
+<script>
+iphone("Screen 5 — ADHD in boys vs girls", `
+  <div style="background:#FFF8F0; padding-bottom:0;">
+    <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="compare-wrap">
+      <h2 class="q-title" style="margin-bottom:16px;">ADHD shows up differently in boys and girls</h2>
+      <div class="compare-grid">
+        <div>
+          <div class="compare-col-head">Boys</div>
+          <div class="compare-photo">Boy photo</div>
+          <div class="compare-item">Usually diagnosed earlier (ages 7–10)</div>
+          <div class="compare-item">More hyperactive and impulsive</div>
+          <div class="compare-item">More likely to act out or be disruptive</div>
+          <div class="compare-item">Struggle more in school but get diagnosed</div>
+        </div>
+        <div>
+          <div class="compare-col-head">Girls</div>
+          <div class="compare-photo">Girl photo</div>
+          <div class="compare-item">Usually diagnosed later (often in teens or adulthood)</div>
+          <div class="compare-item">More likely to be inattentive than hyperactive</div>
+          <div class="compare-item">Tend to keep struggles inside, leading to anxiety</div>
+          <div class="compare-item">School challenges often go unnoticed longer</div>
+        </div>
       </div>
     </div>
+    <div class="cta-wrap"><button class="cta-btn">Good to know</button></div>
   </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Good to know</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 6 — FOCUS
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 6 — Focus</div>
-<div class="screen">
+<script>
+iphone("Screen 6 — Is it hard to focus?", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:20%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -709,32 +381,26 @@
       <div class="option"><span class="option-icon">🧠</span><span class="option-text">They focus well</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 7 — INFO: FOCUS / ORGANIZATION
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 7 — Info: Help your child stay focused</div>
-<div class="screen info-screen">
-  <div class="info-photo-area" style="background: linear-gradient(160deg, #3D2B6B 0%, #5C4A9E 100%);">
-    <span class="info-photo-label" style="color:rgba(255,255,255,0.4);">App mockup — Organization & Planning</span>
+<script>
+iphone("Screen 7 — Info: Stay focused", `
+  <div class="info-screen">
+    <div class="info-photo-area" style="background:linear-gradient(160deg,#3D2B6B,#5C4A9E);">
+      <span class="info-photo-label" style="color:rgba(255,255,255,0.35);">App mockup — Organization &amp; Planning</span>
+    </div>
+    <div class="info-card">
+      <h2 class="info-title">Help your child stay focused with a structured daily routine.</h2>
+      <p class="info-body"><span class="savvy">SAVVY KID</span> provides customized strategies — calendars, checklists, and more — to create structure, ease stress, and boost organization.</p>
+    </div>
+    <div class="cta-wrap"><button class="cta-btn">Got it</button></div>
   </div>
-  <div class="info-card">
-    <h2 class="info-title">Help your child stay focused with a structured daily routine.</h2>
-    <p class="info-body"><span class="savvy">SAVVY KID</span> provides customized strategies — calendars, checklists, and more — to create structure, ease stress, and boost organization.</p>
-  </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Got it</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 8 — TANTRUMS FREQUENCY
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 8 — Tantrums frequency</div>
-<div class="screen">
+<script>
+iphone("Screen 8 — Tantrums frequency", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:28%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -746,33 +412,27 @@
       <div class="option"><span class="option-icon">⏱️</span><span class="option-text">Once a month or less</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 9 — INFO: TANTRUMS
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 9 — Info: Help overcome tantrums</div>
-<div class="screen info-screen">
-  <div class="info-photo-area" style="background: linear-gradient(160deg, #2B2066 0%, #4A3D9E 100%);">
-    <span class="info-photo-label" style="color:rgba(255,255,255,0.4);">App mockup — Tantrums Tamed</span>
+<script>
+iphone("Screen 9 — Info: Overcome tantrums", `
+  <div class="info-screen">
+    <div class="info-photo-area" style="background:linear-gradient(160deg,#2B2066,#4A3D9E);">
+      <span class="info-photo-label" style="color:rgba(255,255,255,0.35);">App mockup — Tantrums Tamed</span>
+    </div>
+    <div class="info-card">
+      <h2 class="info-title">Help your kids overcome tantrums</h2>
+      <p class="info-body">ADHD impacts emotion regulation, making reactions more intense and impulsive, often leading to bigger tantrums from frustration and sensory overload.</p>
+      <p class="info-body"><span class="savvy">SAVVY KID</span> <strong>provides customized strategies to help regulate emotions and reduce tantrums.</strong></p>
+    </div>
+    <div class="cta-wrap"><button class="cta-btn">Okay</button></div>
   </div>
-  <div class="info-card">
-    <h2 class="info-title">Help your kids overcome tantrums</h2>
-    <p class="info-body">ADHD impacts emotion regulation, making reactions more intense and impulsive, often leading to bigger tantrums from frustration and sensory overload.</p>
-    <p class="info-body"><span class="savvy">SAVVY KID</span> <strong>provides customized strategies to help regulate emotions and reduce tantrums.</strong></p>
-  </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Okay</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 10 — DIAGNOSIS
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 10 — ADHD diagnosis</div>
-<div class="screen">
+<script>
+iphone("Screen 10 — ADHD diagnosis", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:34%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -784,14 +444,11 @@
       <div class="option"><span class="option-icon">🤔</span><span class="option-text">Prefer not to answer / Unsure</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 11 — MEDICATION
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 11 — Medication</div>
-<div class="screen">
+<script>
+iphone("Screen 11 — Medication", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:38%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -803,14 +460,11 @@
       <div class="option"><span class="option-icon">🙂</span><span class="option-text">Prefer not to answer</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 12 — THERAPIST
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 12 — Therapist</div>
-<div class="screen">
+<script>
+iphone("Screen 12 — Therapist", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:42%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -821,43 +475,31 @@
       <div class="option"><span class="option-icon">❌</span><span class="option-text">No</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 13 — INFO: TERESA JONSON QUOTE
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 13 — Info: Trusted by therapists</div>
-<div class="screen info-screen">
-  <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="info-card" style="margin-top:0; border-radius:0; padding-top:8px;">
-    <div class="info-badge">+ Trusted by therapists</div>
-    <div class="info-quote-mark">"</div>
-    <h2 class="info-title">15 minutes of everyday exercises with Savvy KID can have the same impact as <span class="hi">regular therapy</span> — in just one month."</h2>
-    <div class="info-author">
-      <div class="info-author-avatar">
-        <!-- Teresa Jonson photo goes here -->
-        <div style="width:100%;height:100%;background:linear-gradient(135deg,#E8D5C0,#C9A882);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(38,37,40,0.4);font-weight:600;text-align:center;padding:4px;">Teresa photo</div>
+<script>
+iphone("Screen 13 — Trusted by therapists", `
+  <div class="info-screen">
+    <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="info-card" style="margin-top:0;border-radius:0;padding-top:4px;">
+      <div class="info-badge">+ Trusted by therapists</div>
+      <div class="info-quote-mark">"</div>
+      <h2 class="info-title">15 minutes of everyday exercises with Savvy KID can have the same impact as <span class="hi">regular therapy</span> — in just one month."</h2>
+      <div class="info-author">
+        <div class="info-author-avatar"><div style="width:100%;height:100%;background:linear-gradient(135deg,#E8D5C0,#C9A882);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(38,37,40,0.35);font-weight:600;text-align:center;padding:3px;">Teresa photo</div></div>
+        <div><div class="info-author-name">Teresa Jonson</div><div class="info-author-role">Certified CHADD therapist</div></div>
       </div>
-      <div>
-        <div class="info-author-name">Teresa Jonson</div>
-        <div class="info-author-role">Certified CHADD therapist</div>
-      </div>
+      <div style="font-size:12px;font-weight:500;color:rgba(38,37,40,0.50);margin-bottom:6px;">Therapist-Backed Strategies, Without the Hassle</div>
+      <div class="info-rating"><span class="stars">★★★★★</span> 4.9 · 10,000+ families</div>
     </div>
-    <div style="font-size:13px;font-weight:500;color:rgba(38,37,40,0.50);margin-bottom:6px;">Therapist-Backed Strategies, Without the Hassle</div>
-    <div class="info-rating"><span class="stars">★★★★★</span> 4.9 · 10,000+ families</div>
+    <div class="cta-wrap"><button class="cta-btn">Let's check</button></div>
   </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Let's check</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 14 — HYPERACTIVITY DRAIN
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 14 — Hyperactivity drain</div>
-<div class="screen">
+<script>
+iphone("Screen 14 — Hyperactivity drain", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:48%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -868,14 +510,11 @@
       <div class="option"><span class="option-icon">😌</span><span class="option-text">Not really — I am okay</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 15 — PUBLIC ENERGY
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 15 — Managing energy in public</div>
-<div class="screen">
+<script>
+iphone("Screen 15 — Energy in public", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:52%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -886,45 +525,28 @@
       <div class="option"><span class="option-icon">👍</span><span class="option-text">No, they do well in public</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 16 — INFO: YOU ARE THE BEST PARENT
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 16 — Info: You are the best parent</div>
-<div class="screen info-screen">
-  <div class="info-photo-area">
-    <span class="info-photo-label">Mom & child photo</span>
-  </div>
-  <div class="info-card">
-    <h2 class="info-title">You are <span class="hi">already the best parent</span> for your child</h2>
-    <div class="checklist">
-      <div class="check-item">
-        <div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        You're doing an amazing job by seeking solutions to support your child
-      </div>
-      <div class="check-item">
-        <div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        Their struggles can transform into strengths — with your guidance
-      </div>
-      <div class="check-item">
-        <div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        Parenting can become more joyful, with more time for you
+<script>
+iphone("Screen 16 — You are already the best parent", `
+  <div class="info-screen">
+    <div class="info-photo-area"><span class="info-photo-label">Mom &amp; child photo</span></div>
+    <div class="info-card">
+      <h2 class="info-title">You are <span class="hi">already the best parent</span> for your child</h2>
+      <div class="checklist">
+        <div class="check-item"><div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>You're doing an amazing job by seeking solutions to support your child</div>
+        <div class="check-item"><div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Their struggles can transform into strengths — with your guidance</div>
+        <div class="check-item"><div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Parenting can become more joyful, with more time for you</div>
       </div>
     </div>
+    <div class="cta-wrap"><button class="cta-btn">Agree</button></div>
   </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Agree</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 17 — TRADITIONAL ADVICE
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 17 — Traditional parenting advice</div>
-<div class="screen">
+<script>
+iphone("Screen 17 — Traditional parenting advice", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:56%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -935,33 +557,25 @@
       <div class="option"><span class="option-icon">✅</span><span class="option-text">I've found useful strategies</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 18 — INFO: ADHD BRINGS STRENGTHS
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 18 — Info: ADHD brings incredible strengths</div>
-<div class="screen info-screen">
-  <div class="info-photo-area">
-    <span class="info-photo-label">Boy with whiteboard photo</span>
+<script>
+iphone("Screen 18 — ADHD brings incredible strengths", `
+  <div class="info-screen">
+    <div class="info-photo-area"><span class="info-photo-label">Boy with whiteboard photo</span></div>
+    <div class="info-card">
+      <h2 class="info-title">ADHD comes with challenges, but it brings <span class="hi">incredible strengths</span></h2>
+      <p class="info-body">Children with ADHD are curious, adaptable, and creative, with strong problem-solving skills</p>
+      <p class="info-body">With leading child development and neurodiversity experts, we design programs that turn kids' energy and curiosity into strengths.</p>
+    </div>
+    <div class="cta-wrap"><button class="cta-btn">Okay</button></div>
   </div>
-  <div class="info-card">
-    <h2 class="info-title">ADHD comes with challenges, but it brings <span class="hi">incredible strengths</span></h2>
-    <p class="info-body">Children with ADHD are curious, adaptable, and creative, with strong problem-solving skills</p>
-    <p class="info-body">With leading child development and neurodiversity experts, we design programs that turn kids' energy and curiosity into strengths.</p>
-  </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Okay</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 19 — CREATIVITY AREAS (MULTI-SELECT)
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 19 — Creativity areas (multi-select)</div>
-<div class="screen">
+<script>
+iphone("Screen 19 — Creativity areas", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:62%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -974,46 +588,32 @@
       <div class="multi-option"><span class="option-icon">🧱</span><span class="option-text">Building (Lego, etc) and DIY activities</span><div class="multi-checkbox"></div></div>
     </div>
   </div>
-  <div class="cta-wrap">
-    <button class="cta-btn ghost">Continue</button>
-  </div>
-</div>
+  <div class="cta-wrap"><button class="cta-btn ghost">Continue</button></div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 20 — INFO: DR. GABOR MATÉ QUOTE
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 20 — Info: Dr. Gabor Maté quote</div>
-<div class="screen info-screen">
-  <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="info-card" style="margin-top:0; border-radius:0; padding-top:8px;">
-    <div class="info-badge">+ Trusted by Experts</div>
-    <div class="info-quote-mark">"</div>
-    <h2 class="info-title">Kids with ADHD are highly intuitive, creative, and sensitive — they just need <span class="hi">the right support</span> to thrive.</h2>
-    <div class="info-author">
-      <div class="info-author-avatar">
-        <!-- Gabor Maté photo goes here -->
-        <div style="width:100%;height:100%;background:linear-gradient(135deg,#D4C5B0,#B8A890);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(38,37,40,0.4);font-weight:600;text-align:center;padding:4px;">Gabor photo</div>
+<script>
+iphone("Screen 20 — Dr. Gabor Maté quote", `
+  <div class="info-screen">
+    <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="info-card" style="margin-top:0;border-radius:0;padding-top:4px;">
+      <div class="info-badge">+ Trusted by Experts</div>
+      <div class="info-quote-mark">"</div>
+      <h2 class="info-title">Kids with ADHD are highly intuitive, creative, and sensitive — they just need <span class="hi">the right support</span> to thrive.</h2>
+      <div class="info-author">
+        <div class="info-author-avatar"><div style="width:100%;height:100%;background:linear-gradient(135deg,#D4C5B0,#B8A890);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(38,37,40,0.35);font-weight:600;text-align:center;padding:3px;">Gabor photo</div></div>
+        <div><div class="info-author-name">Dr. Gabor Maté</div><div class="info-author-role">author, expert in trauma, ADHD, and child development</div></div>
       </div>
-      <div>
-        <div class="info-author-name">Dr. Gabor Maté</div>
-        <div class="info-author-role">author, expert in trauma, ADHD, and child development</div>
-      </div>
+      <p class="info-body" style="margin-top:10px;"><span class="savvy">SAVVY KID</span> offers interactive exercises, guided storytelling, and problem-solving challenges to nurture children's creativity</p>
+      <div class="info-rating"><span class="stars">★★★★★</span> 4.9 · 10,000+ families</div>
     </div>
-    <p class="info-body" style="margin-top:10px;"><span class="savvy">SAVVY KID</span> offers interactive exercises, guided storytelling, and problem-solving challenges to nurture children's creativity</p>
-    <div class="info-rating"><span class="stars">★★★★★</span> 4.9 · 10,000+ families</div>
+    <div class="cta-wrap"><button class="cta-btn">Wow!</button></div>
   </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Wow!</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 21 — ENERGY PEAKS (MULTI-SELECT)
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 21 — Energy peaks (multi-select)</div>
-<div class="screen">
+<script>
+iphone("Screen 21 — Energy peaks", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:68%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -1027,36 +627,26 @@
       <div class="multi-option"><span class="option-icon">⚡</span><span class="option-text">For no reason at all — just bursts of energy randomly!</span><div class="multi-checkbox"></div></div>
     </div>
   </div>
-  <div class="cta-wrap">
-    <button class="cta-btn ghost">Continue</button>
-  </div>
-</div>
+  <div class="cta-wrap"><button class="cta-btn ghost">Continue</button></div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 22 — INFO: ENERGY IS GREATEST RESOURCE
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 22 — Info: Energy is greatest resource</div>
-<div class="screen info-screen">
-  <div class="info-photo-area">
-    <span class="info-photo-label">Jumping boy photo</span>
+<script>
+iphone("Screen 22 — Energy is greatest resource", `
+  <div class="info-screen">
+    <div class="info-photo-area"><span class="info-photo-label">Jumping boy photo</span></div>
+    <div class="info-card">
+      <h2 class="info-title">Energy is a child's <span class="hi">greatest resource</span></h2>
+      <p class="info-body">Even when a child's energy feels overwhelming, it's a gift</p>
+      <p class="info-body"><span class="savvy">SAVVY KID</span> offers proven techniques and exercises to turn energy into focus, creativity, and growth!</p>
+    </div>
+    <div class="cta-wrap"><button class="cta-btn">Wow!</button></div>
   </div>
-  <div class="info-card">
-    <h2 class="info-title">Energy is a child's <span class="hi">greatest resource</span></h2>
-    <p class="info-body">Even when a child's energy feels overwhelming, it's a gift</p>
-    <p class="info-body"><span class="savvy">SAVVY KID</span> offers proven techniques and exercises to turn energy into focus, creativity, and growth!</p>
-  </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Wow!</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 23 — EMPATHY
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 23 — Empathy</div>
-<div class="screen">
+<script>
+iphone("Screen 23 — Empathy", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:74%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -1067,33 +657,25 @@
       <div class="option"><span class="option-icon">😐</span><span class="option-text">Not really</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 24 — INFO: EMPATHY SUPERPOWER
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 24 — Info: ADHD and Empathy</div>
-<div class="screen info-screen">
-  <div class="info-photo-area">
-    <span class="info-photo-label">Two boys talking photo</span>
+<script>
+iphone("Screen 24 — ADHD and Empathy: Heartfelt Superpower", `
+  <div class="info-screen">
+    <div class="info-photo-area"><span class="info-photo-label">Two boys talking photo</span></div>
+    <div class="info-card">
+      <h2 class="info-title">ADHD and Empathy: A Heartfelt <span class="hi">Superpower</span></h2>
+      <p class="info-body">Kids with ADHD feel emotions deeply, making them empathetic, compassionate, and truly connected friends</p>
+      <p class="info-body"><span class="savvy">SAVVY KID</span> uses role-playing, communication tools, and emotional exercises to help kids build strong, confident friendships</p>
+    </div>
+    <div class="cta-wrap"><button class="cta-btn">Great!</button></div>
   </div>
-  <div class="info-card">
-    <h2 class="info-title">ADHD and Empathy: A Heartfelt <span class="hi">Superpower</span></h2>
-    <p class="info-body">Kids with ADHD feel emotions deeply, making them empathetic, compassionate, and truly connected friends</p>
-    <p class="info-body"><span class="savvy">SAVVY KID</span> uses role-playing, communication tools, and emotional exercises to help kids build strong, confident friendships</p>
-  </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Great!</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 25 — FAST THINKING
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 25 — Fast thinking / speaking</div>
-<div class="screen">
+<script>
+iphone("Screen 25 — Fast thinking / speaking", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:80%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -1104,14 +686,11 @@
       <div class="option"><span class="option-icon">😮</span><span class="option-text">Not really</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 26 — UNIQUE SOLUTIONS
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 26 — Unique problem-solving</div>
-<div class="screen">
+<script>
+iphone("Screen 26 — Unique problem-solving", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:84%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -1122,33 +701,25 @@
       <div class="option"><span class="option-icon">🥷</span><span class="option-text">Rarely</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 27 — INFO: NONLINEAR THINKING
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 27 — Info: Nonlinear creative thinking</div>
-<div class="screen info-screen">
-  <div class="info-photo-area">
-    <span class="info-photo-label">Girl with puzzle photo</span>
+<script>
+iphone("Screen 27 — Nonlinear creative thinking", `
+  <div class="info-screen">
+    <div class="info-photo-area"><span class="info-photo-label">Girl with puzzle photo</span></div>
+    <div class="info-card">
+      <h2 class="info-title">Kids with ADHD often think in <span class="hi">nonlinear and creative ways</span></h2>
+      <p class="info-body">They can see connections and possibilities that others might overlook</p>
+      <p class="info-body">Their ability to approach challenges with fresh perspectives and out-of-the-box thinking makes them natural problem-solvers, turning obstacles into opportunities</p>
+    </div>
+    <div class="cta-wrap"><button class="cta-btn">Great!</button></div>
   </div>
-  <div class="info-card">
-    <h2 class="info-title">Kids with ADHD often think in <span class="hi">nonlinear and creative ways</span></h2>
-    <p class="info-body">They can see connections and possibilities that others might overlook</p>
-    <p class="info-body">Their ability to approach challenges with fresh perspectives and out-of-the-box thinking makes them natural problem-solvers, turning obstacles into opportunities</p>
-  </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Great!</button>
-  </div>
-</div>
+`);
+</script>
 
-
-<!-- ════════════════════════════════════════════
-     SCREEN 28 — CURIOSITY TYPE
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 28 — Curiosity type</div>
-<div class="screen">
+<script>
+iphone("Screen 28 — Curiosity type", `
   <div class="progress-wrap"><div class="progress-track"><div class="progress-fill" style="width:90%"></div></div></div>
   <div class="back-btn"><svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7L7 13" stroke="#262528" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   <div class="q-body">
@@ -1159,62 +730,43 @@
       <div class="option"><span class="option-icon">🧸</span><span class="option-text">I'm not always sure if they're curious or just distracted</span></div>
     </div>
   </div>
-</div>
+`);
+</script>
 
+<script>
+iphone("Screen 29 — Curiosity: The Power to Explore", `
+  <div class="info-screen">
+    <div class="info-photo-area"><span class="info-photo-label">Boy pouring water photo</span></div>
+    <div class="info-card">
+      <h2 class="info-title">Curiosity: The Power to <span class="hi">Explore</span></h2>
+      <p class="info-body">Kids with ADHD have a natural curiosity that drives them to explore, ask questions, and seek out new experiences, often noticing details others miss</p>
+      <p class="info-body">This relentless curiosity fuels <strong>creativity and innovation</strong>, making it a powerful strength in learning and problem-solving</p>
+    </div>
+    <div class="cta-wrap"><button class="cta-btn">Great!</button></div>
+  </div>
+`);
+</script>
 
-<!-- ════════════════════════════════════════════
-     SCREEN 29 — INFO: CURIOSITY
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 29 — Info: Curiosity: The Power to Explore</div>
-<div class="screen info-screen">
-  <div class="info-photo-area">
-    <span class="info-photo-label">Boy pouring water photo</span>
-  </div>
-  <div class="info-card">
-    <h2 class="info-title">Curiosity: The Power to <span class="hi">Explore</span></h2>
-    <p class="info-body">Kids with ADHD have a natural curiosity that drives them to explore, ask questions, and seek out new experiences, often noticing details others miss</p>
-    <p class="info-body">This relentless curiosity fuels <strong>creativity and innovation</strong>, making it a powerful strength in learning and problem-solving</p>
-  </div>
-  <div class="cta-wrap">
-    <button class="cta-btn">Great!</button>
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════
-     SCREEN 30 — ANALYZING / LOADER
-════════════════════════════════════════════ -->
-<div class="screen-label">Screen 30 — Analyzing your answers</div>
-<div class="screen">
-  <div class="analyze-photo">
-    <span style="font-size:11px;font-weight:600;color:rgba(38,37,40,0.4);letter-spacing:0.08em;text-transform:uppercase;">Woman with phone photo</span>
-  </div>
+<script>
+iphone("Screen 30 — Analyzing your answers", `
+  <div class="analyze-photo"><span style="font-size:10px;font-weight:600;color:rgba(38,37,40,0.35);letter-spacing:0.08em;text-transform:uppercase;">Woman with phone photo</span></div>
   <div class="analyze-body">
     <h2 class="analyze-title">Analyzing your answers</h2>
     <div class="analyze-row">
-      <div class="analyze-row-head">
-        <span class="analyze-row-label">Behavioral Insights</span>
-        <span class="analyze-row-pct">100% ✓</span>
-      </div>
+      <div class="analyze-row-head"><span class="analyze-row-label">Behavioral Insights</span><span class="analyze-row-pct">100% ✓</span></div>
       <div class="analyze-track"><div class="analyze-fill" style="width:100%"></div></div>
     </div>
     <div class="analyze-row">
-      <div class="analyze-row-head">
-        <span class="analyze-row-label">Custom Plan</span>
-        <span class="analyze-row-pct">28%</span>
-      </div>
+      <div class="analyze-row-head"><span class="analyze-row-label">Custom Plan</span><span class="analyze-row-pct">28%</span></div>
       <div class="analyze-track"><div class="analyze-fill" style="width:28%"></div></div>
     </div>
     <div class="analyze-row">
-      <div class="analyze-row-head">
-        <span class="analyze-row-label">Parenting Blueprint</span>
-        <span class="analyze-row-pct">0%</span>
-      </div>
+      <div class="analyze-row-head"><span class="analyze-row-label">Parenting Blueprint</span><span class="analyze-row-pct">0%</span></div>
       <div class="analyze-track"><div class="analyze-fill" style="width:0%"></div></div>
     </div>
   </div>
-</div>
-
+`);
+</script>
 
 </body>
 </html>
