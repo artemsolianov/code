@@ -1,0 +1,438 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap');
+
+  .cw * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  .cw {
+    font-family: 'Figtree', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .cw-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 14px;
+    padding: 4px 24px 8px;
+    width: 100%;
+  }
+  .cw-track::-webkit-scrollbar { display: none; }
+
+  .cw-card {
+    flex-shrink: 0;
+    width: calc(100% - 48px);
+    scroll-snap-align: center;
+    background: #fff;
+    border-radius: 22px;
+    border: 1px solid rgba(34,28,38,.05);
+    box-shadow: 0 2px 2px rgba(34,28,38,.04), 0 18px 32px -14px rgba(34,28,38,.16);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cw-visual {
+    height: 240px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 8px;
+  }
+  .cw-visual svg { width: 100%; height: 100%; }
+
+  .cw-card[data-c="1"] .cw-visual { background: linear-gradient(150deg,#FBE8CF,#FFF7EC); }
+  .cw-card[data-c="2"] .cw-visual { background: linear-gradient(150deg,#E6E9FB,#F4F5FE); }
+  .cw-card[data-c="3"] .cw-visual { background: linear-gradient(150deg,#FAE1E7,#FFF3F6); }
+  .cw-card[data-c="4"] .cw-visual { background: linear-gradient(150deg,#EEE6F7,#F9F4FC); }
+  .cw-card[data-c="5"] .cw-visual { background: linear-gradient(150deg,#FBE2D9,#FFF3EE); }
+  .cw-card[data-c="6"] .cw-visual { background: linear-gradient(150deg,#E6F0E5,#F3F9F2); }
+
+  .cw-body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cw-title { font-size: 19px; font-weight: 800; letter-spacing: -.3px; color: #262528; }
+  .cw-sub { font-size: 13px; font-weight: 600; color: rgba(38,37,40,.4); line-height: 1.4; margin-bottom: 9px; }
+
+  .cw-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .cw-bullets li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13.5px; line-height: 1.45; color: rgba(38,37,40,.58); font-weight: 500;
+  }
+  .cw-bullets li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 19px; height: 19px;
+    border-radius: 50%;
+    margin-top: 1px;
+    background: #EE942A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") no-repeat center / 11px;
+  }
+
+  .cw-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 24px 4px;
+  }
+
+  .cw-arrow {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid rgba(38,37,40,.1);
+    box-shadow: 0 2px 8px rgba(34,28,38,.08);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    -webkit-appearance: none;
+  }
+  .cw-arrow:active { opacity: .5; }
+  .cw-arrow svg { width: 16px; height: 16px; stroke: rgba(38,37,40,.5); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  .cw-dots { display: flex; align-items: center; gap: 7px; }
+  .cw-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(38,37,40,.18);
+    transition: all .3s;
+    cursor: pointer;
+  }
+  .cw-dot.active { background: #EE942A; width: 22px; border-radius: 4px; }
+
+  .cw-offer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 24px 8px;
+  }
+  .cw-offer-label { font-size: 10.5px; font-weight: 700; color: rgba(38,37,40,.4); text-transform: uppercase; letter-spacing: .5px; }
+  .cw-offer-row { display: flex; align-items: baseline; gap: 9px; }
+  .cw-offer-old { font-size: 14px; font-weight: 600; color: rgba(38,37,40,.4); text-decoration: line-through; }
+  .cw-offer-new { font-size: 26px; font-weight: 900; color: #262528; letter-spacing: -.5px; }
+  .cw-offer-save { font-size: 10px; font-weight: 800; color: #fff; background: #3DB584; border-radius: 100px; padding: 3px 9px; align-self: center; }
+</style>
+
+<div class="cw">
+  <div class="cw-track" id="cw-track">
+
+    <!-- Card 1: Parenting as a Team -->
+    <div class="cw-card" data-c="1">
+      <div class="cw-visual">
+        <!-- viewBox расширен до 276 чтобы правый бэйдж не обрезался -->
+        <svg viewBox="0 0 276 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><filter id="s1"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-opacity="0.12"/></filter></defs>
+          <circle cx="85" cy="88" r="68" fill="rgba(238,148,42,0.07)"/>
+          <circle cx="183" cy="88" r="68" fill="rgba(91,107,245,0.07)"/>
+          <circle cx="85" cy="88" r="56" fill="none" stroke="#EE942A" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.3"/>
+          <circle cx="183" cy="88" r="56" fill="none" stroke="#5B6BF5" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.3"/>
+          <circle cx="52" cy="44" r="6" fill="#EE942A" opacity="0.7"/>
+          <path d="M43 56 Q52 62 61 56" stroke="#EE942A" stroke-width="1.8" fill="none" opacity="0.7" stroke-linecap="round"/>
+          <text x="52" y="76" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="12" fill="#EE942A">Mom</text>
+          <circle cx="216" cy="44" r="6" fill="#5B6BF5" opacity="0.7"/>
+          <path d="M207 56 Q216 62 225 56" stroke="#5B6BF5" stroke-width="1.8" fill="none" opacity="0.7" stroke-linecap="round"/>
+          <text x="216" y="76" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="12" fill="#5B6BF5">Dad</text>
+          <circle cx="134" cy="84" r="42" fill="white" filter="url(#s1)"/>
+          <circle cx="134" cy="84" r="34" fill="none" stroke="#EFEAE2" stroke-width="7"/>
+          <circle cx="134" cy="84" r="34" fill="none" stroke="#EE942A" stroke-width="7" stroke-linecap="round" stroke-dasharray="167 214" transform="rotate(-90 134 84)"/>
+          <text x="134" y="78" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="800" font-size="24" fill="#EE942A">78%</text>
+          <text x="134" y="96" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="8" fill="#8B8FA3" letter-spacing="0.8">IN SYNC</text>
+          <!-- Бэйджи: сдвинуты чтобы влезали в 276 с запасом справа -->
+          <rect x="10" y="162" width="72" height="26" rx="13" fill="rgba(238,148,42,0.1)"/>
+          <circle cx="25" cy="175" r="7" fill="#EE942A"/><path d="M22 175 L24 177 L28 173" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="38" y="175" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#C47F0A">Rules</text>
+          <rect x="90" y="162" width="76" height="26" rx="13" fill="rgba(238,148,42,0.1)"/>
+          <circle cx="105" cy="175" r="7" fill="#EE942A"/><path d="M102 175 L104 177 L108 173" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="118" y="175" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#C47F0A">Routines</text>
+          <rect x="174" y="162" width="82" height="26" rx="13" fill="rgba(238,148,42,0.1)"/>
+          <circle cx="189" cy="175" r="7" fill="#EE942A"/><path d="M186 175 L188 177 L192 173" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="202" y="175" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#C47F0A">Discipline</text>
+        </svg>
+      </div>
+      <div class="cw-body">
+        <div class="cw-title">Parenting as a Team</div>
+        <div class="cw-sub">How to Finally Get on the Same Page</div>
+        <ul class="cw-bullets">
+          <li>Which family rules must be the same and where it's OK to differ</li>
+          <li>When your child plays one parent against the other</li>
+          <li>How to discuss discipline without fighting</li>
+          <li>A 15-min weekly sync template</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 2: Dad's Starter Kit -->
+    <div class="cw-card" data-c="2">
+      <div class="cw-visual">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><filter id="s2"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-opacity="0.12"/></filter></defs>
+          <text x="130" y="22" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#8B8FA3" letter-spacing="0.5">FATHER — SON TIME THIS WEEK</text>
+          <text x="18" y="54" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="600" font-size="11" fill="#8B8FA3">S</text>
+          <text x="56" y="54" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="600" font-size="11" fill="#8B8FA3">M</text>
+          <text x="94" y="54" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="600" font-size="11" fill="#8B8FA3">T</text>
+          <text x="131" y="54" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="600" font-size="11" fill="#8B8FA3">W</text>
+          <text x="168" y="54" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="600" font-size="11" fill="#8B8FA3">T</text>
+          <text x="206" y="54" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="600" font-size="11" fill="#8B8FA3">F</text>
+          <text x="243" y="54" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="600" font-size="11" fill="#8B8FA3">S</text>
+          <circle cx="18" cy="82" r="16" fill="#EFEAE2"/><circle cx="18" cy="82" r="4" fill="#8B8FA3"/>
+          <circle cx="56" cy="82" r="16" fill="#5B6BF5"/><path d="M50 82 L54 86 L62 78" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="94" cy="82" r="16" fill="#5B6BF5"/><path d="M88 82 L92 86 L100 78" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="131" cy="82" r="16" fill="#5B6BF5"/><path d="M125 82 L129 86 L137 78" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="168" cy="82" r="16" fill="#FCD34D"/><rect x="166" y="74" width="5" height="10" rx="2.5" fill="white"/><circle cx="168" cy="88" r="2" fill="white"/>
+          <circle cx="206" cy="82" r="16" fill="#5B6BF5"/><path d="M200 82 L204 86 L212 78" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="243" cy="82" r="16" fill="#5B6BF5"/><path d="M237 82 L241 86 L249 78" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="24" y="122" width="100" height="56" rx="14" fill="white" filter="url(#s2)"/>
+          <text x="74" y="144" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="800" font-size="24" fill="#5B6BF5">5/7</text>
+          <text x="74" y="164" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="9" fill="#8B8FA3" letter-spacing="0.5">DAYS ACTIVE</text>
+          <rect x="136" y="122" width="100" height="56" rx="14" fill="white" filter="url(#s2)"/>
+          <text x="186" y="144" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="800" font-size="22" fill="#5B6BF5">🏆</text>
+          <text x="186" y="164" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="9" fill="#8B8FA3" letter-spacing="0.5">GREAT WEEK</text>
+        </svg>
+      </div>
+      <div class="cw-body">
+        <div class="cw-title">Dad's Starter Kit</div>
+        <div class="cw-sub">What Every Father Needs to Know About ADHD</div>
+        <ul class="cw-bullets">
+          <li>ADHD explained in plain language. Hand it to dad.</li>
+          <li>What works with your child and what makes things worse</li>
+          <li>A one-page meltdown cheat sheet</li>
+          <li>30 educational games to play together</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 3: School Advocacy Toolkit -->
+    <div class="cw-card" data-c="3">
+      <div class="cw-visual">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><filter id="s3"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-opacity="0.12"/></filter></defs>
+          <text x="130" y="18" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#8B8FA3" letter-spacing="0.5">SCHOOL ACTION PLAN</text>
+          <rect x="20" y="30" width="220" height="30" rx="12" fill="white" filter="url(#s3)"/>
+          <circle cx="42" cy="45" r="10" fill="#EE942A"/><path d="M38 45 L41 48 L46 42" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="60" y="45" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="600" font-size="12" fill="#5A5E73">IEP Evaluation</text>
+          <text x="230" y="45" text-anchor="end" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#EE942A">Done</text>
+          <rect x="20" y="68" width="220" height="30" rx="12" fill="white" filter="url(#s3)"/>
+          <circle cx="42" cy="83" r="10" fill="#EE942A"/><path d="M38 83 L41 86 L46 80" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="60" y="83" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="600" font-size="12" fill="#5A5E73">504 Plan Request</text>
+          <text x="230" y="83" text-anchor="end" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#EE942A">Done</text>
+          <rect x="20" y="106" width="220" height="30" rx="12" fill="white" filter="url(#s3)"/>
+          <circle cx="42" cy="121" r="10" fill="#EE942A"/><path d="M38 121 L41 124 L46 118" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="60" y="121" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="600" font-size="12" fill="#5A5E73">Teacher Meeting</text>
+          <text x="230" y="121" text-anchor="end" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#EE942A">Done</text>
+          <rect x="20" y="144" width="220" height="30" rx="12" fill="white" filter="url(#s3)"/>
+          <circle cx="42" cy="159" r="10" fill="#EE942A"/><path d="M38 159 L41 162 L46 156" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="60" y="159" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="600" font-size="12" fill="#5A5E73">Email Templates</text>
+          <text x="230" y="159" text-anchor="end" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#EE942A">Done</text>
+          <rect x="80" y="182" width="100" height="22" rx="11" fill="rgba(238,148,42,0.15)"/>
+          <text x="130" y="193" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#C47F0A">✓  100% Ready</text>
+        </svg>
+      </div>
+      <div class="cw-body">
+        <div class="cw-title">School Advocacy Toolkit</div>
+        <div class="cw-sub">How to Get Your Child the Support They Deserve</div>
+        <ul class="cw-bullets">
+          <li>IEP vs. 504: which one to ask for and how</li>
+          <li>Email templates for teachers</li>
+          <li>A checklist to prepare for school meetings</li>
+          <li>What to do when the school refuses to help</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 4: Age-by-Age Guide -->
+    <div class="cw-card" data-c="4">
+      <div class="cw-visual">
+        <svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
+          <text x="150" y="18" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#8B8FA3" letter-spacing="0.5">EXECUTIVE AGE vs ACTUAL AGE</text>
+          <rect x="60" y="32" width="10" height="10" rx="3" fill="rgba(139,92,246,0.2)"/>
+          <text x="74" y="42" font-family="Figtree,sans-serif" font-weight="600" font-size="10" fill="#8B8FA3">Actual Age</text>
+          <rect x="170" y="32" width="10" height="10" rx="3" fill="#8B5CF6"/>
+          <text x="184" y="42" font-family="Figtree,sans-serif" font-weight="600" font-size="10" fill="#8B8FA3">Executive Age</text>
+          <text x="68" y="76" text-anchor="start" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="800" font-size="14" fill="#5A5E73">5-7</text>
+          <rect x="110" y="64" width="172" height="24" rx="12" fill="rgba(139,92,246,0.13)"/>
+          <rect x="110" y="64" width="108" height="24" rx="12" fill="#8B5CF6"/>
+          <text x="164" y="77" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="white">~Age 4</text>
+          <text x="258" y="77" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#7C3AED">Age 6</text>
+          <text x="68" y="119" text-anchor="start" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="800" font-size="14" fill="#5A5E73">8-10</text>
+          <rect x="110" y="107" width="172" height="24" rx="12" fill="rgba(139,92,246,0.13)"/>
+          <rect x="110" y="107" width="128" height="24" rx="12" fill="#8B5CF6"/>
+          <text x="174" y="120" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="white">~Age 7</text>
+          <text x="262" y="120" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#7C3AED">Age 10</text>
+          <text x="68" y="162" text-anchor="start" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="800" font-size="14" fill="#5A5E73">11-14</text>
+          <rect x="110" y="150" width="172" height="24" rx="12" fill="rgba(139,92,246,0.13)"/>
+          <rect x="110" y="150" width="152" height="24" rx="12" fill="#8B5CF6"/>
+          <text x="186" y="163" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="white">~Age 10</text>
+          <text x="270" y="163" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#7C3AED">Age 14</text>
+        </svg>
+      </div>
+      <div class="cw-body">
+        <div class="cw-title">Age-by-Age Guide</div>
+        <div class="cw-sub">Is This Normal or Is This ADHD?</div>
+        <ul class="cw-bullets">
+          <li>What to expect at every age from 4 to 14</li>
+          <li>How far behind your child's self-control really is</li>
+          <li>When to worry and when to give it time</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 5: Burnout Recovery Guide -->
+    <div class="cw-card" data-c="5">
+      <div class="cw-visual">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="s5"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-opacity="0.12"/></filter>
+            <linearGradient id="bf" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.7"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.4"/></linearGradient>
+          </defs>
+          <text x="130" y="18" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#8B8FA3" letter-spacing="0.5">PARENT ENERGY LEVEL</text>
+          <rect x="40" y="32" width="162" height="80" rx="18" fill="white" filter="url(#s5)"/>
+          <rect x="40" y="32" width="162" height="80" rx="18" fill="none" stroke="#EF4444" stroke-width="2.5"/>
+          <rect x="202" y="52" width="14" height="40" rx="6" fill="none" stroke="#EF4444" stroke-width="2.5"/>
+          <rect x="204" y="56" width="10" height="32" rx="4" fill="rgba(239,68,68,0.15)"/>
+          <rect x="50" y="44" width="44" height="56" rx="10" fill="url(#bf)"/>
+          <rect x="100" y="44" width="44" height="56" rx="10" fill="rgba(239,68,68,0.05)" stroke="rgba(239,68,68,0.12)" stroke-width="1"/>
+          <rect x="150" y="44" width="44" height="56" rx="10" fill="rgba(239,68,68,0.05)" stroke="rgba(239,68,68,0.12)" stroke-width="1"/>
+          <text x="121" y="136" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="800" font-size="34" fill="#EF4444">28%</text>
+          <text x="121" y="160" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="9" fill="#8B8FA3" letter-spacing="0.5">ENERGY LEFT</text>
+          <rect x="58" y="174" width="126" height="24" rx="12" fill="rgba(239,68,68,0.1)"/>
+          <text x="121" y="186" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#DC2626">Time to recharge 💛</text>
+        </svg>
+      </div>
+      <div class="cw-body">
+        <div class="cw-title">Burnout Recovery Guide</div>
+        <div class="cw-sub">When You're Running on Empty</div>
+        <ul class="cw-bullets">
+          <li>How to stop the cycle of guilt and anger</li>
+          <li>5 thinking traps that make things worse</li>
+          <li>What to say when others judge your parenting</li>
+          <li>A weekly check-in guide</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 6: Grandparent Guide -->
+    <div class="cw-card" data-c="6">
+      <div class="cw-visual">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><filter id="s6"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-opacity="0.12"/></filter></defs>
+          <text x="130" y="18" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#8B8FA3" letter-spacing="0.5">ADHD KNOWLEDGE</text>
+          <circle cx="130" cy="80" r="48" fill="white" filter="url(#s6)"/>
+          <circle cx="130" cy="80" r="40" fill="none" stroke="#E5EFE9" stroke-width="8"/>
+          <circle cx="130" cy="80" r="40" fill="none" stroke="#2BAC76" stroke-width="8" stroke-linecap="round" stroke-dasharray="214 251" transform="rotate(-90 130 80)"/>
+          <text x="130" y="74" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="800" font-size="28" fill="#2BAC76">85%</text>
+          <text x="130" y="93" text-anchor="middle" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="8" fill="#8B8FA3" letter-spacing="0.5">UNDERSTOOD</text>
+          <rect x="12" y="142" width="114" height="26" rx="13" fill="rgba(43,172,118,0.08)"/>
+          <circle cx="28" cy="155" r="7" fill="#2BAC76"/><path d="M25 155 L27 157 L31 153" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="40" y="155" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#2BAC76">What ADHD is</text>
+          <rect x="134" y="142" width="114" height="26" rx="13" fill="rgba(43,172,118,0.08)"/>
+          <circle cx="150" cy="155" r="7" fill="#2BAC76"/><path d="M147 155 L149 157 L153 153" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="162" y="155" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#2BAC76">Do's &amp; Don'ts</text>
+          <rect x="12" y="174" width="114" height="26" rx="13" fill="rgba(43,172,118,0.08)"/>
+          <circle cx="28" cy="187" r="7" fill="#2BAC76"/><path d="M25 187 L27 189 L31 185" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="40" y="187" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#2BAC76">Family rules</text>
+          <rect x="134" y="174" width="114" height="26" rx="13" fill="rgba(43,172,118,0.08)"/>
+          <circle cx="150" cy="187" r="7" fill="#2BAC76"/><path d="M147 187 L149 189 L153 185" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="162" y="187" dominant-baseline="central" font-family="Figtree,sans-serif" font-weight="700" font-size="10" fill="#2BAC76">Glossary</text>
+        </svg>
+      </div>
+      <div class="cw-body">
+        <div class="cw-title">Grandparent Guide</div>
+        <div class="cw-sub">A Guide You Can Send to Grandparents</div>
+        <ul class="cw-bullets">
+          <li>What ADHD is, in words they'll understand</li>
+          <li>What helps and what makes it worse</li>
+          <li>How grandparents can support</li>
+          <li>A simple glossary</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cw-pagination">
+    <button class="cw-arrow" id="cw-prev">
+      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="cw-dots" id="cw-dots">
+      <div class="cw-dot active" data-i="0"></div>
+      <div class="cw-dot" data-i="1"></div>
+      <div class="cw-dot" data-i="2"></div>
+      <div class="cw-dot" data-i="3"></div>
+      <div class="cw-dot" data-i="4"></div>
+      <div class="cw-dot" data-i="5"></div>
+    </div>
+    <button class="cw-arrow" id="cw-next">
+      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <div class="cw-offer">
+    <span class="cw-offer-label">One-time special offer</span>
+    <div class="cw-offer-row">
+      <span class="cw-offer-old">$59.99</span>
+      <span class="cw-offer-new">$29.99</span>
+      <span class="cw-offer-save">SAVE 50%</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+setTimeout(function() {
+  var track = document.getElementById('cw-track');
+  var dots = document.querySelectorAll('.cw-dot');
+  var cards = track.querySelectorAll('.cw-card');
+  var total = cards.length;
+  var current = 0;
+  var timer = null;
+
+  function step() { return cards[0].offsetWidth + 14; }
+
+  function goTo(i) {
+    current = (i + total) % total;
+    track.scrollTo({ left: current * step(), behavior: 'smooth' });
+    dots.forEach(function(d, idx) { d.classList.toggle('active', idx === current); });
+  }
+
+  function startAuto() {
+    stopAuto();
+    timer = setInterval(function() { goTo(current + 1); }, 3500);
+  }
+
+  function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+
+  function pauseRestart() {
+    stopAuto();
+    current = Math.round(track.scrollLeft / step());
+    setTimeout(startAuto, 8000);
+  }
+
+  track.addEventListener('scroll', function() {
+    var i = Math.round(track.scrollLeft / step());
+    if (i !== current) { current = i; dots.forEach(function(d, idx) { d.classList.toggle('active', idx === i); }); }
+  }, { passive: true });
+
+  track.addEventListener('touchstart', pauseRestart, { passive: true });
+
+  document.getElementById('cw-prev').addEventListener('click', function() { pauseRestart(); goTo(current - 1); });
+  document.getElementById('cw-next').addEventListener('click', function() { pauseRestart(); goTo(current + 1); });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() { pauseRestart(); goTo(parseInt(dot.getAttribute('data-i'))); });
+  });
+
+  startAuto();
+}, 100);
+</script>
