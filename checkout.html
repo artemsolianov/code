@@ -1,0 +1,237 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap');
+
+  .co * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  .co {
+    font-family: 'Figtree', sans-serif;
+    background: #fff;
+    width: 100%;
+    padding: 16px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .co-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .co-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .co-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #706f71;
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .co-price {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5c65ea;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .co-discount {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fb6767;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .co-divider {
+    height: 1px;
+    background: #e8e7e9;
+    margin: 14px 0;
+    width: 100%;
+  }
+
+  .co-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .co-total-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #262528;
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .co-total-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: #262528;
+    white-space: nowrap;
+    text-align: right;
+  }
+</style>
+
+<!-- Checkout price summary component -->
+<!-- Usage: copy the .co element and update the text/price values -->
+
+<!-- USD $9.99 -->
+<div class="co">
+  <div class="co-rows">
+    <div class="co-row">
+      <span class="co-label">Your personalized plan:</span>
+      <span class="co-price">$ 39.99</span>
+    </div>
+    <div class="co-row">
+      <span class="co-label">Introductory offer discount:</span>
+      <span class="co-discount">$ 30.00</span>
+    </div>
+  </div>
+  <div class="co-divider"></div>
+  <div class="co-total-row">
+    <span class="co-total-label">Total Price:</span>
+    <span class="co-total-price">$ 9.99</span>
+  </div>
+</div>
+
+<!-- USD $24.99 -->
+<div class="co">
+  <div class="co-rows">
+    <div class="co-row">
+      <span class="co-label">Your personalized plan:</span>
+      <span class="co-price">$ 69.99</span>
+    </div>
+    <div class="co-row">
+      <span class="co-label">Introductory offer discount:</span>
+      <span class="co-discount">$ 45.00</span>
+    </div>
+  </div>
+  <div class="co-divider"></div>
+  <div class="co-total-row">
+    <span class="co-total-label">Total Price:</span>
+    <span class="co-total-price">$ 24.99</span>
+  </div>
+</div>
+
+<!-- USD $44.99 -->
+<div class="co">
+  <div class="co-rows">
+    <div class="co-row">
+      <span class="co-label">Your personalized plan:</span>
+      <span class="co-price">$ 99.99</span>
+    </div>
+    <div class="co-row">
+      <span class="co-label">Introductory offer discount:</span>
+      <span class="co-discount">$ 55.00</span>
+    </div>
+  </div>
+  <div class="co-divider"></div>
+  <div class="co-total-row">
+    <span class="co-total-label">Total Price:</span>
+    <span class="co-total-price">$ 44.99</span>
+  </div>
+</div>
+
+<!-- GBP £7.99 -->
+<div class="co">
+  <div class="co-rows">
+    <div class="co-row">
+      <span class="co-label">Your personalized plan:</span>
+      <span class="co-price">£ 29.99</span>
+    </div>
+    <div class="co-row">
+      <span class="co-label">Introductory offer discount:</span>
+      <span class="co-discount">£ 22.00</span>
+    </div>
+  </div>
+  <div class="co-divider"></div>
+  <div class="co-total-row">
+    <span class="co-total-label">Total Price:</span>
+    <span class="co-total-price">£ 7.99</span>
+  </div>
+</div>
+
+<!-- AUD $14.99 -->
+<div class="co">
+  <div class="co-rows">
+    <div class="co-row">
+      <span class="co-label">Your personalized plan:</span>
+      <span class="co-price">AUD 59.99</span>
+    </div>
+    <div class="co-row">
+      <span class="co-label">Introductory offer discount:</span>
+      <span class="co-discount">AUD 45.00</span>
+    </div>
+  </div>
+  <div class="co-divider"></div>
+  <div class="co-total-row">
+    <span class="co-total-label">Total Price:</span>
+    <span class="co-total-price">AUD 14.99</span>
+  </div>
+</div>
+
+<!-- CA$ 14.99 -->
+<div class="co">
+  <div class="co-rows">
+    <div class="co-row">
+      <span class="co-label">Your personalized plan:</span>
+      <span class="co-price">CA$ 59.99</span>
+    </div>
+    <div class="co-row">
+      <span class="co-label">Introductory offer discount:</span>
+      <span class="co-discount">CA$ 45.00</span>
+    </div>
+  </div>
+  <div class="co-divider"></div>
+  <div class="co-total-row">
+    <span class="co-total-label">Total Price:</span>
+    <span class="co-total-price">CA$ 14.99</span>
+  </div>
+</div>
+
+<!-- French — € 9.99 -->
+<div class="co">
+  <div class="co-rows">
+    <div class="co-row">
+      <span class="co-label">Votre programme personnalisé :</span>
+      <span class="co-price">€ 34.99</span>
+    </div>
+    <div class="co-row">
+      <span class="co-label">Offre de lancement :</span>
+      <span class="co-discount">€ 25.00</span>
+    </div>
+  </div>
+  <div class="co-divider"></div>
+  <div class="co-total-row">
+    <span class="co-total-label">Prix total :</span>
+    <span class="co-total-price">€ 9.99</span>
+  </div>
+</div>
+
+<!-- German — € 9.99 -->
+<div class="co">
+  <div class="co-rows">
+    <div class="co-row">
+      <span class="co-label">Ihr personalisiertes Programm:</span>
+      <span class="co-price">€ 34.99</span>
+    </div>
+    <div class="co-row">
+      <span class="co-label">Einführungsrabatt:</span>
+      <span class="co-discount">€ 25.00</span>
+    </div>
+  </div>
+  <div class="co-divider"></div>
+  <div class="co-total-row">
+    <span class="co-total-label">Gesamtpreis:</span>
+    <span class="co-total-price">€ 9.99</span>
+  </div>
+</div>
