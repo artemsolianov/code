@@ -410,7 +410,6 @@ setTimeout(function() {
   var cards = track.querySelectorAll('.cw-card');
   var total = cards.length;
   var current = 0;
-  var timer = null;
 
   function step() { return cards[0].offsetWidth + 14; }
 
@@ -420,33 +419,16 @@ setTimeout(function() {
     dots.forEach(function(d, idx) { d.classList.toggle('active', idx === current); });
   }
 
-  function startAuto() {
-    stopAuto();
-    timer = setInterval(function() { goTo(current + 1); }, 3500);
-  }
-
-  function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
-
-  function pauseRestart() {
-    stopAuto();
-    current = Math.round(track.scrollLeft / step());
-    setTimeout(startAuto, 8000);
-  }
-
   track.addEventListener('scroll', function() {
     var i = Math.round(track.scrollLeft / step());
     if (i !== current) { current = i; dots.forEach(function(d, idx) { d.classList.toggle('active', idx === i); }); }
   }, { passive: true });
 
-  track.addEventListener('touchstart', pauseRestart, { passive: true });
-
-  document.getElementById('cw-prev').addEventListener('click', function() { pauseRestart(); goTo(current - 1); });
-  document.getElementById('cw-next').addEventListener('click', function() { pauseRestart(); goTo(current + 1); });
+  document.getElementById('cw-prev').addEventListener('click', function() { goTo(current - 1); });
+  document.getElementById('cw-next').addEventListener('click', function() { goTo(current + 1); });
 
   dots.forEach(function(dot) {
-    dot.addEventListener('click', function() { pauseRestart(); goTo(parseInt(dot.getAttribute('data-i'))); });
+    dot.addEventListener('click', function() { goTo(parseInt(dot.getAttribute('data-i'))); });
   });
-
-  startAuto();
 }, 100);
 </script>
