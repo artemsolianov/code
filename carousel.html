@@ -7,19 +7,19 @@
     font-family: 'Figtree', sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     width: 100%;
   }
 
   .cw-header {
-    padding: 4px 24px 0;
+    padding: 2px 24px 0;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 3px;
     width: 100%;
   }
-  .cw-header-title { font-size: 22px; font-weight: 800; letter-spacing: -.4px; color: #262528; line-height: 1.2; text-align: center; width: 100%; display: block; }
-  .cw-header-sub { font-size: 13px; font-weight: 500; color: rgba(38,37,40,.45); line-height: 1.4; text-align: center; width: 100%; display: block; }
+  .cw-header-title { font-size: 20px; font-weight: 800; letter-spacing: -.4px; color: #262528; line-height: 1.2; text-align: center; width: 100%; display: block; }
+  .cw-header-sub { font-size: 12px; font-weight: 500; color: rgba(38,37,40,.45); line-height: 1.4; text-align: center; width: 100%; display: block; }
 
   .cw-track {
     display: flex;
@@ -28,7 +28,7 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 14px;
-    padding: 4px 24px 8px;
+    padding: 2px 24px 6px;
     width: 100%;
   }
   .cw-track::-webkit-scrollbar { display: none; }
@@ -38,7 +38,7 @@
     width: calc(100% - 48px);
     scroll-snap-align: center;
     background: #fff;
-    border-radius: 22px;
+    border-radius: 20px;
     border: 1px solid rgba(34,28,38,.05);
     box-shadow: 0 2px 2px rgba(34,28,38,.04), 0 18px 32px -14px rgba(34,28,38,.16);
     overflow: hidden;
@@ -47,13 +47,13 @@
   }
 
   .cw-visual {
-    height: 190px;
+    height: 160px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 8px 8px 12px;
+    padding: 6px 6px 10px;
   }
   .cw-visual svg { width: 100%; height: 100%; }
 
@@ -65,27 +65,27 @@
   .cw-card[data-c="6"] .cw-visual { background: linear-gradient(150deg,#EEE6F7,#F9F4FC); }
 
   .cw-body {
-    padding: 18px 20px 20px;
+    padding: 12px 16px 14px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
   }
 
-  .cw-title { font-size: 19px; font-weight: 800; letter-spacing: -.3px; color: #262528; }
-  .cw-sub { font-size: 13px; font-weight: 600; color: rgba(38,37,40,.4); line-height: 1.4; margin-bottom: 9px; }
+  .cw-title { font-size: 17px; font-weight: 800; letter-spacing: -.3px; color: #262528; }
+  .cw-sub { font-size: 12px; font-weight: 600; color: rgba(38,37,40,.4); line-height: 1.4; margin-bottom: 6px; }
 
-  .cw-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .cw-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
   .cw-bullets li {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 13.5px; line-height: 1.45; color: rgba(38,37,40,.58); font-weight: 500;
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12.5px; line-height: 1.4; color: rgba(38,37,40,.58); font-weight: 500;
   }
   .cw-bullets li::before {
     content: '';
     flex-shrink: 0;
-    width: 19px; height: 19px;
+    width: 17px; height: 17px;
     border-radius: 50%;
     margin-top: 1px;
-    background: #EE942A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") no-repeat center / 11px;
+    background: #EE942A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") no-repeat center / 10px;
   }
 
   .cw-pagination {
@@ -93,7 +93,7 @@
     align-items: center;
     justify-content: center;
     gap: 14px;
-    padding: 0 24px 4px;
+    padding: 0 24px 2px;
   }
 
   .cw-arrow {
@@ -125,8 +125,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    padding: 4px 24px 8px;
+    gap: 4px;
+    padding: 2px 24px 6px;
   }
   .cw-offer-label { font-size: 10.5px; font-weight: 700; color: rgba(38,37,40,.4); text-transform: uppercase; letter-spacing: .5px; }
   .cw-offer-row { display: flex; align-items: baseline; gap: 9px; }
