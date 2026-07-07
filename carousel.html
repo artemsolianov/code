@@ -57,6 +57,8 @@
   }
   .cw-visual svg { width: 100%; height: 100%; }
 
+  .cw-card[data-c="0"] .cw-visual { background: #F3F0FC; padding: 0; }
+  .cw-card[data-c="0"] .cw-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; border-radius: 0; }
   .cw-card[data-c="1"] .cw-visual { background: linear-gradient(150deg,#FBE8CF,#FFF7EC); }
   .cw-card[data-c="2"] .cw-visual { background: linear-gradient(150deg,#FBE2D9,#FFF3EE); }
   .cw-card[data-c="3"] .cw-visual { background: linear-gradient(150deg,#E6F0E5,#F3F9F2); }
@@ -141,6 +143,13 @@
     <div class="cw-header-sub">Expert guides for every challenge ADHD families face.</div>
   </div>
   <div class="cw-track" id="cw-track">
+
+    <!-- Card 0: Full Guide Library (image) -->
+    <div class="cw-card" data-c="0">
+      <div class="cw-visual">
+        <img src="{{el_00Ja3}}" alt="Your Full Guide Library"/>
+      </div>
+    </div>
 
     <!-- Card 1: Parenting as a Team -->
     <div class="cw-card" data-c="1">
@@ -481,6 +490,7 @@
       <div class="cw-dot" data-i="3"></div>
       <div class="cw-dot" data-i="4"></div>
       <div class="cw-dot" data-i="5"></div>
+      <div class="cw-dot" data-i="6"></div>
     </div>
     <button class="cw-arrow" id="cw-next">
       <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
