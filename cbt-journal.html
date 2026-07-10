@@ -5,12 +5,12 @@
   .topbar { flex:0 0 auto; padding:20px 22px 12px; background:#FCE7CB; }
   .stepper { display:flex; align-items:flex-start; justify-content:space-between; }
   .step { display:flex; flex-direction:column; align-items:center; gap:6px; flex:1; position:relative; }
-  .step .lbl { font-size:9px; font-weight:700; line-height:1.15; text-align:center; color:var(--tx3); max-width:52px; }
+  .step .lbl { font-size:9px; font-weight:700; line-height:1.15; text-align:center; color:rgba(38,37,40,.45); max-width:52px; }
   .step.active .lbl, .step.done .lbl { color:var(--tx); }
-  .step .node { width:16px; height:16px; border-radius:50%; background:#E7E1D7; order:-1; position:relative; z-index:2; display:flex; align-items:center; justify-content:center; }
+  .step .node { width:16px; height:16px; border-radius:50%; background:#B8AFA3; order:-1; position:relative; z-index:2; display:flex; align-items:center; justify-content:center; }
   .step.done .node { background:var(--peri); } .step.active .node { background:#fff; border:3px solid var(--peri); }
   .step .node svg { width:9px; height:9px; }
-  .step::before { content:''; position:absolute; top:8px; left:-50%; width:100%; height:3px; background:#E7E1D7; z-index:1; }
+  .step::before { content:''; position:absolute; top:8px; left:-50%; width:100%; height:3px; background:#B8AFA3; z-index:1; }
   .step:first-child::before { display:none; } .step.done::before, .step.active::before { background:var(--peri); }
   .scroll { flex:1 1 auto; padding-bottom:60px; }
   .hero { position:relative; text-align:center; overflow:hidden; background:linear-gradient(180deg,#FCE7CB 0%,#FDF1E1 38%,var(--cream) 68%); }
