@@ -143,27 +143,16 @@
 </div>
 
 <script>
-(function(){
-  function cloneHeroImg() {
-    var source = document.getElementById('img');
-    var target = document.getElementById('heroImg');
-    if (!source || !target || target.querySelector('img')) return;
+setTimeout(function() {
+  var source = document.getElementById('img');
+  var target = document.getElementById('heroImg');
+  if (source && target) {
     var img = source.querySelector('img');
     if (img) {
       var clone = img.cloneNode(true);
       clone.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       target.appendChild(clone);
-      return true;
     }
-    return false;
-  }
-
-  if (!cloneHeroImg()) {
-    var obs = new MutationObserver(function() {
-      if (cloneHeroImg()) obs.disconnect();
-    });
-    var source = document.getElementById('img');
-    if (source) obs.observe(source, { childList: true, subtree: true, attributes: true });
   }
 
   var cmp = document.getElementById('cmp'), fired = false;
@@ -172,5 +161,5 @@
     var rc = cmp.getBoundingClientRect();
     if(rc.top < window.innerHeight - 40){ fired = true; cmp.querySelectorAll('.bar-fill').forEach(function(b){ b.style.width = b.getAttribute('data-w'); }); }
   }, {passive:true});
-})();
+}, 0);
 </script>
