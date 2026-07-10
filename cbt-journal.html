@@ -161,5 +161,5 @@ setTimeout(function() {
     var rc = cmp.getBoundingClientRect();
     if(rc.top < window.innerHeight - 40){ fired = true; cmp.querySelectorAll('.bar-fill').forEach(function(b){ b.style.width = b.getAttribute('data-w'); }); }
   }, {passive:true});
-}, 0);
+}, 100);
 </script>
