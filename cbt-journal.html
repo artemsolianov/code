@@ -144,15 +144,26 @@
 
 <script>
 (function(){
-  var source = document.getElementById('img');
-  var target = document.getElementById('heroImg');
-  if (source && target) {
+  function cloneHeroImg() {
+    var source = document.getElementById('img');
+    var target = document.getElementById('heroImg');
+    if (!source || !target || target.querySelector('img')) return;
     var img = source.querySelector('img');
     if (img) {
       var clone = img.cloneNode(true);
       clone.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       target.appendChild(clone);
+      return true;
     }
+    return false;
+  }
+
+  if (!cloneHeroImg()) {
+    var obs = new MutationObserver(function() {
+      if (cloneHeroImg()) obs.disconnect();
+    });
+    var source = document.getElementById('img');
+    if (source) obs.observe(source, { childList: true, subtree: true, attributes: true });
   }
 
   var cmp = document.getElementById('cmp'), fired = false;
